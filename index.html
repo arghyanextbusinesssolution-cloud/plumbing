@@ -448,12 +448,12 @@ body.menu-open{overflow:hidden}
   position:fixed;
   inset:0;
   z-index:100000;
-  background:#171717;
+  background:#f2f2ef;
   color:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:opacity .7s ease, visibility .7s ease;
+  overflow:hidden;
+  transition:opacity .8s ease, visibility .8s ease;
+  background-image:linear-gradient(rgba(126,145,138,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(126,145,138,.06) 1px,transparent 1px);
+  background-size:72px 72px;
 }
 
 .page-loader.is-loaded{
@@ -462,39 +462,33 @@ body.menu-open{overflow:hidden}
   pointer-events:none;
 }
 
-.loader-inner{
-  width:min(280px,70vw);
-}
-
-.loader-brand{
-  font-size:12px;
-  letter-spacing:3px;
-  text-align:center;
-  margin-bottom:22px;
-}
-
-.loader-brand img{
-  width:120px;
-  filter:none;
-}
-
-.loader-line{
-  height:1px;
-  background:rgba(255,255,255,.25);
-  overflow:hidden;
-}
-
-.loader-line span{
-  display:block;
-  width:0;
-  height:100%;
-  background:#fff;
-  animation:loaderProgress 1.4s ease forwards;
-}
-
-@keyframes loaderProgress{
-  to{width:100%}
-}
+.loader-panel{position:absolute;top:0;bottom:0;width:calc(50% - 8px);background:#f2f2ef;z-index:2;transition:transform 1.35s cubic-bezier(.77,0,.18,1)}
+.loader-panel-left{left:0}.loader-panel-right{right:0}
+.page-loader.is-sealed .loader-panel{width:50%}
+.loader-reveal-image{position:absolute;top:0;left:50%;width:2px;height:100%;object-fit:cover;object-position:center;transform:translateX(-50%);z-index:1;opacity:0;transition:width 1.35s cubic-bezier(.77,0,.18,1),opacity .3s ease}
+.page-loader.is-sealed .loader-reveal-image{width:100vw;opacity:1}
+.loader-gap-line{position:absolute;top:0;bottom:0;left:50%;width:1px;z-index:4;background:rgba(255,255,255,.8);box-shadow:0 0 24px rgba(255,255,255,.9);transform:scaleY(0);transform-origin:center;transition:transform .7s ease}
+.page-loader.is-piping .loader-gap-line{transform:scaleY(1)}
+.loader-brand{position:absolute;left:50%;top:50%;width:120px;transform:translate(-50%,-50%);z-index:3;transition:opacity .35s ease,transform .55s ease}
+.loader-brand img{width:100%;filter:invert(1)}
+.page-loader.is-piping .loader-brand{opacity:0;transform:translate(-50%,-50%) scale(.85)}
+.loader-meta{position:absolute;left:50%;bottom:42px;width:min(300px,70vw);transform:translateX(-50%);z-index:3;display:flex;justify-content:space-between;color:#777;font-size:9px;letter-spacing:2px;text-transform:uppercase;transition:opacity .35s ease}
+.loader-status:after{content:"";animation:loaderStatus 1.2s steps(4,end) infinite}
+@keyframes loaderStatus{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+.loader-progress:after{content:"0%";animation:loaderPercent 1.8s ease forwards}
+@keyframes loaderPercent{0%{content:"0%"}35%{content:"32%"}70%{content:"68%"}100%{content:"100%"}}
+.page-loader.is-expanded{opacity:0;visibility:hidden;pointer-events:none}.page-loader.is-expanded .loader-meta{opacity:0}
+.loader-pipe-network{position:absolute;inset:0;z-index:5;opacity:0;transition:opacity .35s ease;pointer-events:none}
+.loader-pipe-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.loader-pipe-svg path{fill:none;stroke:#839c93;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 3px 4px rgba(73,99,91,.18))}
+.loader-pipe-svg .pipe-highlight{stroke:#c1d5cd;stroke-width:1}.loader-joint{fill:#b3c6bf;stroke:#708b81;stroke-width:2;transform-box:fill-box;transform-origin:center}.loader-water{fill:#8ed8d0;filter:drop-shadow(0 0 9px rgba(93,215,205,.8));opacity:0}.loader-bubble{fill:#b9eeea;opacity:0}.loader-leak-svg{fill:#8ed8d0;opacity:0}.loader-seal-svg{fill:none;stroke:#dceee7;stroke-width:7;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1;opacity:0}.loader-frame-svg{fill:none;stroke:#dceee7;stroke-width:2;opacity:0;transform-box:fill-box;transform-origin:center}
+.page-loader.is-piping .loader-pipe-svg path{stroke-dashoffset:0}.page-loader.is-piping .loader-pipe-network,.page-loader.is-leaking .loader-pipe-network,.page-loader.is-sealed .loader-pipe-network{opacity:1}
+.loader-pipe{position:absolute;background:#98aaa3;box-shadow:0 0 12px rgba(152,170,163,.35)}.loader-pipe-horizontal{height:2px;width:58%;left:21%;top:50%;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.2,.8,.2,1)}.loader-pipe-vertical{width:2px;height:22%;left:39%;top:50%;transform:scaleY(0);transform-origin:top;transition:transform .55s ease .45s}.loader-pipe-vertical-right{left:61%;top:28%;transform-origin:bottom}.page-loader.is-piping .loader-pipe-horizontal,.page-loader.is-leaking .loader-pipe-horizontal,.page-loader.is-sealed .loader-pipe-horizontal{transform:scaleX(1)}.page-loader.is-piping .loader-pipe-vertical,.page-loader.is-leaking .loader-pipe-vertical,.page-loader.is-sealed .loader-pipe-vertical{transform:scaleY(1)}
+.loader-pipe-pulse{position:absolute;top:calc(50% - 4px);left:21%;width:8px;height:8px;border-radius:50%;background:#dceee7;box-shadow:0 0 18px 5px rgba(220,238,231,.7);opacity:0}.page-loader.is-piping .loader-pipe-pulse,.page-loader.is-leaking .loader-pipe-pulse{animation:pressurePulse 1.5s linear .5s infinite}@keyframes pressurePulse{0%{left:21%;opacity:0}10%{opacity:1}90%{opacity:1}100%{left:79%;opacity:0}}
+.loader-leak{position:absolute;left:61%;top:50%;width:4px;height:4px;border-radius:50%;background:#b9d8d2;opacity:0}.page-loader.is-leaking .loader-leak{opacity:1;animation:leakDrop 1s ease-in infinite}@keyframes leakDrop{0%{transform:translateY(0);opacity:1}100%{transform:translateY(26px);opacity:0}}
+.loader-seal{position:absolute;left:59%;top:calc(50% - 10px);width:0;height:20px;border-top:2px solid #f1f1ec;border-bottom:2px solid #f1f1ec;opacity:0;transition:width .45s ease,opacity .2s ease}.page-loader.is-sealed .loader-seal{width:5%;opacity:1}
+.loader-frame{position:absolute;left:21%;top:25%;width:58%;height:50%;border:1px solid rgba(255,255,255,.85);opacity:0;transform:scale(.86);z-index:6;transition:opacity .5s ease,transform 1s cubic-bezier(.2,.8,.2,1)}.page-loader.is-sealed .loader-frame{opacity:1;transform:scale(1)}.page-loader.is-expanded .loader-pipe-network{opacity:0}
+.page-loader:not(.is-loaded) ~ .hero .hero-copy > *{opacity:0}
 
 .chat-widget{
   position:fixed;
@@ -779,7 +773,7 @@ body.menu-open{overflow:hidden}
 
   display:grid;
 
-  grid-template-columns:repeat(4,1fr);
+  grid-template-columns:repeat(5,1fr);
 }
 
 .service-nav-item{
@@ -1021,6 +1015,10 @@ body.menu-open{overflow:hidden}
 
   line-height:1.75;
 }
+
+.service-card-cta{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:15px;border-top:1px solid #deded9;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1.1px;transition:color .3s ease}
+.service-card-cta-arrow{font-size:16px;transition:transform .35s ease}
+.carousel-service-card:hover .service-card-cta-arrow{transform:translate(5px,-5px)}
 
 .services-carousel-bottom{
   display:flex;
@@ -2661,6 +2659,14 @@ body.menu-open{overflow:hidden}
 
 }
 
+.page-loader{background:#171717;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .7s ease,visibility .7s ease;background-image:none}
+.loader-inner{width:min(280px,70vw)}
+.loader-brand{position:static;width:auto;transform:none;font-size:12px;letter-spacing:3px;text-align:center;margin-bottom:22px}
+.loader-brand img{width:120px;filter:none}
+.loader-line{height:1px;background:rgba(255,255,255,.25);overflow:hidden}
+.loader-line span{display:block;width:0;height:100%;background:#fff;animation:loaderProgress 1.4s ease forwards}
+@keyframes loaderProgress{to{width:100%}}
+
 </style>
 
 </head>
@@ -2838,7 +2844,7 @@ Scroll to explore
 
 <div class="container service-nav-inner">
 
-<a href="#services" class="service-nav-item">
+<a href="caulking-waterproofing.html" class="service-nav-item">
 
 Waterproofing
 
@@ -2847,7 +2853,7 @@ Waterproofing
 </a>
 
 
-<a href="#services" class="service-nav-item">
+<a href="abseiling-services.html" class="service-nav-item">
 
 Abseiling
 
@@ -2856,18 +2862,26 @@ Abseiling
 </a>
 
 
-<a href="#services" class="service-nav-item">
+<a href="maintenance.html" class="service-nav-item">
 
-Renovations
+Maintenance
 
 <span>↗</span>
 
 </a>
 
 
-<a href="#services" class="service-nav-item">
+<a href="commercial-works.html" class="service-nav-item">
 
-Maintenance
+Commercial Works
+
+<span>↗</span>
+
+</a>
+
+<a href="bathroom-sealing.html" class="service-nav-item">
+
+Bathroom Sealing
 
 <span>↗</span>
 
@@ -2916,8 +2930,8 @@ Solutions.
 
 Specialist property services backed by decades of
 construction experience. From waterproofing and sealing
-to complete renovations and difficult-access building
-maintenance.
+to property maintenance, commercial works and difficult-access
+building solutions.
 
 </p>
 
@@ -2958,7 +2972,11 @@ aria-label="Next service">
 
 <article
 class="service-card carousel-service-card"
-data-cursor="Explore">
+data-cursor="Explore"
+data-page="maintenance.html"
+tabindex="0"
+role="link"
+aria-label="Open Maintenance service details">
 
 <div class="service-image parallax-image">
 
@@ -2993,6 +3011,11 @@ and commercial environments.
 
 </p>
 
+<div class="service-card-cta">
+<span>Explore Service</span>
+<span class="service-card-cta-arrow">↗</span>
+</div>
+
 </div>
 
 </article>
@@ -3001,7 +3024,11 @@ and commercial environments.
 
 <article
 class="service-card carousel-service-card"
-data-cursor="Explore">
+data-cursor="Explore"
+data-page="caulking-waterproofing.html"
+tabindex="0"
+role="link"
+aria-label="Open Caulking &amp; Waterproofing service details">
 
 <div class="service-image parallax-image">
 
@@ -3036,6 +3063,11 @@ designed for long-term performance.
 
 </p>
 
+<div class="service-card-cta">
+<span>Explore Service</span>
+<span class="service-card-cta-arrow">↗</span>
+</div>
+
 </div>
 
 </article>
@@ -3044,7 +3076,11 @@ designed for long-term performance.
 
 <article
 class="service-card carousel-service-card"
-data-cursor="Explore">
+data-cursor="Explore"
+data-page="abseiling-services.html"
+tabindex="0"
+role="link"
+aria-label="Open Abseiling Services service details">
 
 <div class="service-image parallax-image">
 
@@ -3079,48 +3115,10 @@ and high-access building areas.
 
 </p>
 
+<div class="service-card-cta">
+<span>Explore Service</span>
+<span class="service-card-cta-arrow">↗</span>
 </div>
-
-</article>
-
-
-
-<article
-class="service-card carousel-service-card"
-data-cursor="Explore">
-
-<div class="service-image parallax-image">
-
-<img
-src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1000&q=90"
-alt="Home renovation">
-
-<div class="service-number">
-04
-</div>
-
-</div>
-
-<div class="service-content">
-
-<div class="service-title-row">
-
-<h3>
-Renovations
-</h3>
-
-<span class="service-arrow">
-↗
-</span>
-
-</div>
-
-<p>
-
-Carefully managed renovations creating functional,
-modern and enduring spaces.
-
-</p>
 
 </div>
 
@@ -3130,7 +3128,11 @@ modern and enduring spaces.
 
 <article
 class="service-card carousel-service-card"
-data-cursor="Explore">
+data-cursor="Explore"
+data-page="commercial-works.html"
+tabindex="0"
+role="link"
+aria-label="Open Commercial Works service details">
 
 <div class="service-image parallax-image">
 
@@ -3139,7 +3141,7 @@ src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fi
 alt="Commercial works">
 
 <div class="service-number">
-05
+04
 </div>
 
 </div>
@@ -3165,6 +3167,11 @@ for commercial properties and facilities.
 
 </p>
 
+<div class="service-card-cta">
+<span>Explore Service</span>
+<span class="service-card-cta-arrow">↗</span>
+</div>
+
 </div>
 
 </article>
@@ -3173,7 +3180,11 @@ for commercial properties and facilities.
 
 <article
 class="service-card carousel-service-card"
-data-cursor="Explore">
+data-cursor="Explore"
+data-page="bathroom-sealing.html"
+tabindex="0"
+role="link"
+aria-label="Open Bathroom Sealing service details">
 
 <div class="service-image parallax-image">
 
@@ -3182,7 +3193,7 @@ src="https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fi
 alt="Bathroom sealing">
 
 <div class="service-number">
-06
+05
 </div>
 
 </div>
@@ -3207,6 +3218,11 @@ Detailed sealing and waterproofing for wet areas,
 bathrooms and renovation projects.
 
 </p>
+
+<div class="service-card-cta">
+<span>Explore Service</span>
+<span class="service-card-cta-arrow">↗</span>
+</div>
 
 </div>
 
@@ -3237,7 +3253,7 @@ bathrooms and renovation projects.
 /
 
 <span class="services-total">
-06
+05
 </span>
 
 </span>
@@ -4427,10 +4443,6 @@ Caulking & Waterproofing
 Abseiling
 </a>
 
-<a href="#">
-Renovations
-</a>
-
 </div>
 
 
@@ -5450,28 +5462,6 @@ let didDrag = false;
 
 servicesCards
 .forEach((card,index)=>{
-card.dataset.service =
-String(index + 1).padStart(2,"0");
-
-const exploreHit =
-document.createElement("button");
-
-exploreHit.className =
-"service-explore-hit";
-
-exploreHit.type = "button";
-exploreHit.dataset.cursor = "Explore";
-exploreHit.setAttribute(
-"aria-label",
-`Explore ${card.querySelector("h3").textContent.trim()}`
-);
-
-card.querySelector(".service-image")
-.appendChild(exploreHit);
-});
-
-servicesCards
-.forEach((card,index)=>{
 
 if(index < 4){
 
@@ -5480,6 +5470,31 @@ servicesCarousel
 
 }
 
+});
+
+function openServiceCard(card,source){
+const title = card.querySelector("h3")?.textContent.trim() || "Unknown service";
+const page = card.dataset.page;
+console.log("Seal A Gap service card clicked",{title,page,source});
+
+if(!page){
+console.error("Service card has no data-page URL",card);
+return;
+}
+
+window.location.href = page;
+}
+
+servicesCards.forEach(card=>{
+card.addEventListener("click",event=>{
+event.stopPropagation();
+if(didDrag){
+console.warn("Service card navigation skipped because the card was dragged",card);
+didDrag = false;
+return;
+}
+openServiceCard(card,"direct card listener");
+});
 });
 
 
@@ -5923,40 +5938,29 @@ e=>{
 const card =
 e.target.closest(".carousel-service-card");
 
-const exploreHit =
-e.target.closest(".service-explore-hit");
-
-if(!card || !exploreHit){
+if(!card){
 return;
 }
 
 if(didDrag){
+console.warn("Service card navigation skipped because the carousel was dragged",card);
 didDrag = false;
 return;
 }
 
-const sourceImage =
-card.querySelector("img");
-
-const sourceRect =
-sourceImage.getBoundingClientRect();
-
-sessionStorage.setItem(
-"serviceTransition",
-JSON.stringify({
-src:sourceImage.src,
-left:sourceRect.left,
-top:sourceRect.top,
-width:sourceRect.width,
-height:sourceRect.height
-})
-);
-
-window.location.href =
-`service-detail.html?service=${card.dataset.service}`;
+openServiceCard(card,"carousel listener");
 
 }
 );
+
+servicesCarousel.addEventListener("keydown",e=>{
+const card = e.target.closest(".carousel-service-card");
+if(!card || (e.key !== "Enter" && e.key !== " ")){
+return;
+}
+e.preventDefault();
+openServiceCard(card,"keyboard listener");
+});
 
 
 window
