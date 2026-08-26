@@ -1787,6 +1787,83 @@ body.menu-open{overflow:hidden}
   padding:150px 0;
 }
 
+/* =========================================================
+   TESTIMONIALS
+========================================================= */
+
+.testimonials{
+  padding:120px 0 130px;
+  background:#f3f3f0;
+  overflow:hidden;
+}
+
+.testimonials-header{
+  max-width:760px;
+  margin:0 auto 54px;
+  text-align:center;
+}
+
+.testimonials-header .section-heading{margin-bottom:22px}
+.testimonials-header p{color:#707070;line-height:1.75;font-size:17px}
+.testimonials-quote-mark{font:72px/1 Georgia,serif;margin-bottom:18px}
+
+.testimonial-marquee{
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  overflow:hidden;
+  padding:12px 0 22px;
+  mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);
+}
+
+.testimonial-track{
+  display:flex;
+  gap:22px;
+  width:max-content;
+  will-change:transform;
+}
+
+.testimonial-track-left{animation:testimonialLeft 42s linear infinite}
+.testimonial-track-right{animation:testimonialRight 42s linear infinite}
+.testimonial-marquee:hover .testimonial-track{animation-play-state:paused}
+
+@keyframes testimonialLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes testimonialRight{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+.testimonial-card{
+  width:360px;
+  min-height:270px;
+  flex:0 0 360px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  gap:19px;
+  background:#fff;
+  border:1px solid #deded9;
+  box-shadow:0 15px 35px rgba(20,20,20,.06);
+  transition:transform .35s ease,box-shadow .35s ease;
+}
+
+.testimonial-card:hover{transform:translateY(-7px);box-shadow:0 22px 45px rgba(20,20,20,.12)}
+.testimonial-card-top{display:flex;align-items:center;justify-content:space-between}
+.testimonial-card-top span:first-child{font:30px/1 Georgia,serif}
+.testimonial-stars{font-size:12px;letter-spacing:2px;color:#8a6c32}
+.testimonial-card blockquote{font-size:16px;line-height:1.7;color:#4d4d4d}
+.testimonial-author{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:16px;border-top:1px solid #e7e7e3}
+.testimonial-author img{width:42px;height:42px;border-radius:50%;object-fit:cover;filter:grayscale(100%)}
+.testimonial-author strong{display:block;font-size:13px;font-weight:500}
+.testimonial-author small{display:block;color:#858585;font-size:11px;margin-top:3px}
+
+@media(max-width:760px){
+  .testimonials{padding:85px 0 90px}
+  .testimonials-header{padding:0 15px;margin-bottom:38px}
+  .testimonials-header p{font-size:15px}
+  .testimonial-card{width:285px;min-height:245px;flex-basis:285px;padding:20px}
+  .testimonial-card blockquote{font-size:14px}
+  .testimonial-marquee{gap:14px;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+}
+
 .quote-inner{
   text-align:center;
 
@@ -4099,6 +4176,42 @@ Talk to Our Team
 
 
 <!-- ======================================================
+ TESTIMONIALS
+====================================================== -->
+
+<section class="testimonials" id="testimonials">
+
+<div class="testimonials-header">
+<div class="testimonials-quote-mark">“</div>
+<div class="eyebrow">Client Stories</div>
+<h2 class="section-heading">Built on trust.<br>Backed by results.</h2>
+<p>Hear from homeowners, builders and property teams who rely on Seal A Gap to deliver work that lasts.</p>
+</div>
+
+<div class="testimonial-marquee">
+<div class="testimonial-track testimonial-track-left">
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“The team were tidy, responsive and incredibly thorough. Our bathroom sealing looks perfect and we finally have peace of mind.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sarah Mitchell"><div><strong>Sarah Mitchell</strong><small>Homeowner · Brighton</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“A difficult commercial repair was handled safely and without disrupting our tenants. Clear communication from start to finish.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Daniel Morris"><div><strong>Daniel Morris</strong><small>Property Manager · Melbourne</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“They understood exactly what the renovation needed and delivered a finish that feels considered in every room.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=120&q=80" alt="Emma Clarke"><div><strong>Emma Clarke</strong><small>Renovation Client · Malvern</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“Reliable people, excellent workmanship and no surprises. We now use Seal A Gap for every maintenance project.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=120&q=80" alt="James Wilson"><div><strong>James Wilson</strong><small>Builder · Richmond</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“The team were tidy, responsive and incredibly thorough. Our bathroom sealing looks perfect and we finally have peace of mind.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Sarah Mitchell"><div><strong>Sarah Mitchell</strong><small>Homeowner · Brighton</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“A difficult commercial repair was handled safely and without disrupting our tenants. Clear communication from start to finish.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Daniel Morris"><div><strong>Daniel Morris</strong><small>Property Manager · Melbourne</small></div></div></article>
+</div>
+
+<div class="testimonial-track testimonial-track-right">
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“The attention to detail was outstanding. Every joint and finish was treated with care, and the result is built to last.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&q=80" alt="Olivia Hart"><div><strong>Olivia Hart</strong><small>Homeowner · Hawthorn</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“Their rope-access crew solved a problem others could not reach. Professional, efficient and genuinely easy to work with.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Michael Chen"><div><strong>Michael Chen</strong><small>Facilities Lead · Southbank</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“From the first quote to the final clean-up, everything was handled with care. The finished space feels completely transformed.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1544005819-7a2d2f0d3e12?auto=format&fit=crop&w=120&q=80" alt="Lucy Bennett"><div><strong>Lucy Bennett</strong><small>Renovation Client · Toorak</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“A dependable partner for ongoing building care. They spot issues early and always leave the site in excellent condition.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=120&q=80" alt="Peter Walsh"><div><strong>Peter Walsh</strong><small>Operations Manager · Carlton</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“The attention to detail was outstanding. Every joint and finish was treated with care, and the result is built to last.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1544005313-94ddf028ef?auto=format&fit=crop&w=120&q=80" alt="Olivia Hart"><div><strong>Olivia Hart</strong><small>Homeowner · Hawthorn</small></div></div></article>
+<article class="testimonial-card"><div class="testimonial-card-top"><span>“</span><span class="testimonial-stars">★★★★★</span></div><blockquote>“Their rope-access crew solved a problem others could not reach. Professional, efficient and genuinely easy to work with.”</blockquote><div class="testimonial-author"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80" alt="Michael Chen"><div><strong>Michael Chen</strong><small>Facilities Lead · Southbank</small></div></div></article>
+</div>
+</div>
+</section>
+
+
+
+<!-- ======================================================
  BIG QUOTE
 ====================================================== -->
 
@@ -6248,6 +6361,20 @@ navigation.style.boxShadow =
 /* =========================================================
    REFRESH
 ========================================================= */
+
+document.querySelectorAll(".testimonial-marquee").forEach(marquee=>{
+marquee.addEventListener("touchstart",()=>{
+marquee.querySelectorAll(".testimonial-track").forEach(track=>{
+track.style.animationPlayState="paused";
+});
+},{passive:true});
+
+marquee.addEventListener("touchend",()=>{
+marquee.querySelectorAll(".testimonial-track").forEach(track=>{
+track.style.animationPlayState="running";
+});
+},{passive:true});
+});
 
 const drawerNavigation =
 document.querySelector(".navigation");
