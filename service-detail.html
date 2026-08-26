@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Service Detail | Seal A Gap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171717;--muted:#707070;--line:#deded9;--paper:#f4f4f1;--accent:#d8e2dc}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
+a{color:inherit;text-decoration:none}
+.detail-nav{height:88px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:2}
+.brand{font-size:18px;font-weight:600;letter-spacing:-.7px}
+.back{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;display:flex;gap:12px;align-items:center}
+.back span{font-size:20px;line-height:0}
+.detail-hero{min-height:calc(100vh - 88px);display:grid;grid-template-columns:43% 57%;background:#fff}
+.hero-copy{padding:clamp(70px,10vw,150px) 7vw;display:flex;flex-direction:column;justify-content:center}
+.kicker{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
+h1{font:500 clamp(54px,7vw,112px)/.94 "Manrope",sans-serif;letter-spacing:-5px;max-width:650px}
+.hero-copy p{color:var(--muted);font-size:17px;line-height:1.8;max-width:450px;margin-top:38px}
+.hero-image{min-height:650px;overflow:hidden}
+.hero-image img{height:100%;width:100%;object-fit:cover;filter:grayscale(100%);transition:filter .6s ease}
+.hero-image:hover img{filter:grayscale(0)}
+.page-transition-image{position:fixed;z-index:10;object-fit:cover;pointer-events:none;filter:grayscale(100%);transition:all .8s cubic-bezier(.2,.8,.2,1)}
+.detail-content{max-width:1280px;margin:auto;padding:130px 5vw 150px}
+.content-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:11vw;border-top:1px solid var(--line);padding-top:28px}
+.content-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.content-copy{max-width:650px}
+.content-copy h2{font:500 clamp(32px,4vw,58px)/1.04 "Manrope",sans-serif;letter-spacing:-2px;margin-bottom:30px}
+.content-copy p{font-size:17px;line-height:1.85;color:#555;margin-bottom:25px}
+.detail-band{margin-top:130px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.detail-band img{width:100%;height:540px;object-fit:cover;filter:grayscale(100%)}
+.detail-band img:last-child{margin-top:100px}
+.detail-footer{padding:55px 5vw;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1.3px;text-transform:uppercase}
+@media(max-width:760px){.detail-nav{height:72px;padding:0 24px}.detail-hero{display:block;min-height:0}.hero-copy{padding:80px 24px 65px}h1{font-size:58px;letter-spacing:-3px}.hero-copy p{font-size:15px;margin-top:28px}.hero-image{height:72vh;min-height:430px}.detail-content{padding:85px 24px 100px}.content-grid{display:block}.content-copy{margin-top:35px}.content-copy h2{font-size:40px}.content-copy p{font-size:15px}.detail-band{display:block;margin-top:80px}.detail-band img{height:430px;margin:0 0 18px!important}.detail-footer{padding:35px 24px;display:block;line-height:2}}
+</style>
+</head>
+<body>
+<nav class="detail-nav">
+<a class="brand" href="index.html#services">Seal A Gap</a>
+<a class="back" href="index.html#services"><span>←</span> Back to services</a>
+</nav>
+<main>
+<section class="detail-hero">
+<div class="hero-copy">
+<div class="kicker" id="service-number">Service 01</div>
+<h1 id="service-title">Maintenance</h1>
+<p id="service-intro"></p>
+</div>
+<div class="hero-image"><img id="service-image" alt=""></div>
+</section>
+<section class="detail-content">
+<div class="content-grid">
+<div class="content-label">What we deliver</div>
+<div class="content-copy">
+<h2 id="service-heading"></h2>
+<p id="service-description"></p>
+<p>We plan every stage carefully, communicate clearly, and leave each site clean and ready for use. Our experienced team works across Melbourne with a practical eye for detail and long-term performance.</p>
+</div>
+</div>
+<div class="detail-band">
+<img id="service-image-secondary" alt="">
+<img id="service-image-tertiary" alt="">
+</div>
+</section>
+</main>
+<footer class="detail-footer"><span>Seal A Gap</span><span>Melbourne, VIC · 0419 800 494</span></footer>
+<script>
+const services={
+"01":{title:"Maintenance",intro:"Complete property maintenance for residential and commercial environments.",description:"Responsive building maintenance that protects your property, resolves issues early, and keeps every detail performing as it should.",image:"https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1100&q=90"},
+"02":{title:"Caulking & Waterproofing",intro:"Professional waterproofing and sealing systems designed for long-term performance.",description:"Careful preparation and durable sealing systems help prevent moisture damage across wet areas, facades, joints, and vulnerable building details.",image:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1100&q=90"},
+"03":{title:"Abseiling Services",intro:"Specialist rope-access solutions for difficult and high-access building areas.",description:"Our rope-access team reaches challenging locations safely and efficiently, reducing disruption while delivering precise inspection, repair, and maintenance work.",image:"https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1100&q=90"},
+"04":{title:"Renovations",intro:"Carefully managed renovations creating functional, modern, and enduring spaces.",description:"From the first idea through to the final detail, we coordinate renovation work that feels considered, useful, and built to last.",image:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1100&q=90"},
+"05":{title:"Commercial Works",intro:"Reliable construction and maintenance solutions for commercial properties and facilities.",description:"We help commercial spaces stay safe, presentable, and operational with dependable construction, repair, and maintenance support.",image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1100&q=90"},
+"06":{title:"Bathroom Sealing",intro:"Detailed sealing and waterproofing for wet areas, bathrooms, and renovation projects.",description:"Precise preparation and clean finishing keep bathrooms protected from water ingress while complementing the space around them.",image:"https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1100&q=90"}
+};
+const id=new URLSearchParams(location.search).get("service")||"01";
+const service=services[id]||services["01"];
+document.title=`${service.title} | Seal A Gap`;
+document.querySelector("#service-number").textContent=`Service ${id}`;
+document.querySelector("#service-title").textContent=service.title;
+document.querySelector("#service-intro").textContent=service.intro;
+document.querySelector("#service-heading").textContent=service.title;
+document.querySelector("#service-description").textContent=service.description;
+["service-image","service-image-secondary","service-image-tertiary"].forEach((key,index)=>{const image=document.querySelector(`#${key}`);image.src=service[["image","secondary","tertiary"][index]];image.alt=service.title;});
+
+const transitionData=sessionStorage.getItem("serviceTransition");
+const heroImage=document.querySelector("#service-image");
+
+if(transitionData){
+try{
+const source=JSON.parse(transitionData);
+const transitionImage=document.createElement("img");
+const target=heroImage.parentElement.getBoundingClientRect();
+
+transitionImage.className="page-transition-image";
+transitionImage.src=source.src;
+transitionImage.style.left=`${source.left}px`;
+transitionImage.style.top=`${source.top}px`;
+transitionImage.style.width=`${source.width}px`;
+transitionImage.style.height=`${source.height}px`;
+document.body.appendChild(transitionImage);
+heroImage.style.opacity="0";
+
+requestAnimationFrame(()=>{
+transitionImage.style.left=`${target.left}px`;
+transitionImage.style.top=`${target.top}px`;
+transitionImage.style.width=`${target.width}px`;
+transitionImage.style.height=`${target.height}px`;
+});
+
+setTimeout(()=>{
+heroImage.style.opacity="1";
+transitionImage.remove();
+},850);
+
+sessionStorage.removeItem("serviceTransition");
+}catch(error){
+sessionStorage.removeItem("serviceTransition");
+}
+}
+</script>
+</body>
+</html>
