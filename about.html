@@ -1,0 +1,1899 @@
+l<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>About Us | Seal A Gap Melbourne</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#101010;
+      --dark:#181818;
+      --text:#202020;
+      --muted:#747474;
+      --soft:#f2f3f1;
+      --soft2:#e9e9e6;
+      --white:#ffffff;
+      --border:#d8d8d4;
+      --container:1280px;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:"DM Sans",sans-serif;
+      background:#fff;
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    img{
+      width:100%;
+      display:block;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    button{
+      font:inherit;
+    }
+
+    .container{
+      width:min(var(--container),calc(100% - 64px));
+      margin:auto;
+    }
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:2.3px;
+      font-size:11px;
+      color:#7c7c7c;
+      margin-bottom:22px;
+    }
+
+    .section-heading{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(48px,4.8vw,74px);
+      font-weight:500;
+      line-height:.97;
+      letter-spacing:-4px;
+    }
+
+    .section-copy{
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    .header{
+      height:84px;
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:1000;
+      background:#fff;
+      border-bottom:1px solid rgba(0,0,0,.08);
+    }
+
+    .nav{
+      width:min(1380px,calc(100% - 60px));
+      height:100%;
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:28px;
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-size:18px;
+      font-weight:600;
+      letter-spacing:-.6px;
+    }
+
+    .logo-mark{
+      width:31px;
+      height:25px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:4px;
+    }
+
+    .logo-mark span{
+      height:4px;
+      width:25px;
+      border-radius:20px;
+      background:#111;
+      transform:rotate(-9deg);
+    }
+
+    .logo-mark span:nth-child(2){
+      width:21px;
+      margin-left:5px;
+    }
+
+    .navigation{
+      display:flex;
+      align-items:center;
+      gap:38px;
+    }
+
+    .navigation a{
+      font-size:13px;
+      color:#494949;
+      position:relative;
+    }
+
+    .navigation a:after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:1px;
+      background:#111;
+      transition:.3s;
+    }
+
+    .navigation a:hover:after,
+    .navigation a.active:after{
+      width:100%;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:20px;
+    }
+
+    .phone{
+      font-size:13px;
+    }
+
+    .nav-cta,
+    .primary-button,
+    .outline-button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:14px;
+      border-radius:100px;
+      min-height:52px;
+      padding:0 27px;
+      position:relative;
+      overflow:hidden;
+      isolation:isolate;
+      transition:.35s ease;
+    }
+
+    .nav-cta{
+      min-height:44px;
+      padding:0 23px;
+      background:#111;
+      color:#fff;
+      font-size:12px;
+    }
+
+    .primary-button{
+      background:#111;
+      color:#fff;
+      font-size:13px;
+    }
+
+    .outline-button{
+      border:1px solid #aaa;
+      font-size:13px;
+    }
+
+    .nav-cta:hover,
+    .primary-button:hover,
+    .outline-button:hover{
+      transform:translateY(-3px);
+    }
+
+    .outline-button:hover{
+      background:#111;
+      color:#fff;
+      border-color:#111;
+    }
+
+    .menu-button{
+      display:none;
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      border:1px solid rgba(0,0,0,.2);
+      background:#fff;
+      cursor:pointer;
+      position:relative;
+      z-index:1200;
+    }
+
+    .menu-button:before,
+    .menu-button:after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:15px;
+      height:1px;
+      background:#111;
+      transform:translate(-50%,-50%);
+      transition:.3s;
+    }
+
+    .menu-button:after{
+      transform:translate(-50%,-50%) rotate(90deg);
+    }
+
+    .menu-button.open{
+      background:#111;
+      transform:rotate(45deg);
+    }
+
+    .menu-button.open:before,
+    .menu-button.open:after{
+      background:#fff;
+    }
+
+    .drawer-backdrop{
+      position:fixed;
+      inset:0;
+      z-index:1050;
+      background:rgba(0,0,0,.38);
+      opacity:0;
+      visibility:hidden;
+      transition:.35s;
+    }
+
+    .drawer-backdrop.open{
+      opacity:1;
+      visibility:visible;
+    }
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .about-hero{
+      padding:175px 0 0;
+      background:#fff;
+    }
+
+    .about-hero-top{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:90px;
+      align-items:end;
+      padding-bottom:78px;
+    }
+
+    .about-hero h1{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(66px,7vw,112px);
+      font-weight:500;
+      line-height:.88;
+      letter-spacing:-7px;
+      max-width:780px;
+    }
+
+    .about-hero-copy{
+      max-width:570px;
+      padding-bottom:10px;
+    }
+
+    .about-hero-copy p{
+      color:#707070;
+      font-size:19px;
+      line-height:1.82;
+    }
+
+    .hero-media{
+      height:760px;
+      position:relative;
+      overflow:hidden;
+      background:#ddd;
+    }
+
+    .hero-media img{
+      width:100%;
+      height:115%;
+      object-fit:cover;
+      transform:scale(1.04);
+    }
+
+    .hero-badge{
+      position:absolute;
+      left:52px;
+      bottom:48px;
+      width:190px;
+      height:190px;
+      border-radius:50%;
+      background:rgba(255,255,255,.94);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:28px;
+      z-index:3;
+      font-size:11px;
+      line-height:1.55;
+      letter-spacing:1.4px;
+      text-transform:uppercase;
+    }
+
+    .hero-orbit{
+      position:absolute;
+      left:147px;
+      bottom:143px;
+      width:360px;
+      height:360px;
+      z-index:4;
+      pointer-events:none;
+    }
+
+    .orbit-bubble{
+      position:absolute;
+      top:50%;
+      left:50%;
+      width:58px;
+      height:58px;
+      border:1px solid rgba(255,255,255,.82);
+      border-radius:50%;
+      background:rgba(16,16,16,.78);
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+      color:#fff;
+      display:grid;
+      place-items:center;
+      font-size:9px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      transform:translate(-50%,-50%);
+      transition:background .35s ease, border-color .35s ease, scale .35s ease;
+      will-change:transform;
+    }
+
+    .orbit-bubble.is-near{
+      background:#fff;
+      border-color:#fff;
+      color:#111;
+      scale:1.15;
+    }
+
+    .orbit-ring{
+      position:absolute;
+      inset:25px;
+      border:1px solid rgba(255,255,255,.3);
+      border-radius:50%;
+      animation:orbit-spin 18s linear infinite;
+    }
+
+    @keyframes orbit-spin{
+      to{transform:rotate(360deg)}
+    }
+
+    @media(prefers-reduced-motion:reduce){
+      .orbit-ring{animation:none}
+      .orbit-bubble{transition:none}
+    }
+
+    /* =========================================================
+       INTRO
+    ========================================================= */
+
+    .intro{
+      padding:150px 0;
+    }
+
+    .intro-grid{
+      display:grid;
+      grid-template-columns:.72fr 1.28fr;
+      gap:120px;
+      align-items:start;
+    }
+
+    .intro-right{
+      max-width:840px;
+    }
+
+    .intro-lead{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(36px,4vw,60px);
+      line-height:1.06;
+      letter-spacing:-3px;
+      font-weight:500;
+      margin-bottom:32px;
+    }
+
+    .intro-right p{
+      color:#707070;
+      font-size:18px;
+      line-height:1.85;
+      margin-bottom:18px;
+    }
+
+    /* =========================================================
+       EXPERIENCE
+    ========================================================= */
+
+    .experience{
+      padding:145px 0;
+      background:var(--soft);
+    }
+
+    .experience-grid{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:95px;
+      align-items:center;
+    }
+
+    .experience-image{
+      height:720px;
+      overflow:hidden;
+    }
+
+    .experience-image img{
+      height:115%;
+      object-fit:cover;
+    }
+
+    .experience-copy{
+      max-width:630px;
+    }
+
+    .experience-copy .section-heading{
+      margin-bottom:30px;
+    }
+
+    .experience-copy .section-copy{
+      margin-bottom:44px;
+    }
+
+    .experience-list{
+      border-top:1px solid #c8c8c4;
+    }
+
+    .experience-row{
+      display:grid;
+      grid-template-columns:50px 1fr;
+      gap:18px;
+      padding:25px 0;
+      border-bottom:1px solid #c8c8c4;
+    }
+
+    .experience-row .num{
+      font-size:11px;
+      color:#999;
+      padding-top:4px;
+    }
+
+    .experience-row h3{
+      font-size:18px;
+      font-weight:500;
+      margin-bottom:7px;
+    }
+
+    .experience-row p{
+      color:#777;
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    /* =========================================================
+       STATS
+    ========================================================= */
+
+    .stats{
+      padding:105px 0;
+      background:#fff;
+    }
+
+    .stats-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .stat{
+      padding:12px 65px;
+      border-right:1px solid #ddd;
+    }
+
+    .stat:first-child{
+      padding-left:0;
+    }
+
+    .stat:last-child{
+      border-right:none;
+    }
+
+    .stat-number{
+      font-family:"Manrope",sans-serif;
+      font-size:64px;
+      font-weight:500;
+      letter-spacing:-4px;
+    }
+
+    .stat-title{
+      font-size:13px;
+      color:#777;
+      margin-top:10px;
+    }
+
+    /* =========================================================
+       VALUES
+    ========================================================= */
+
+    .values{
+      background:#111;
+      color:#fff;
+      padding:150px 0;
+    }
+
+    .values-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:100px;
+      align-items:end;
+      margin-bottom:70px;
+    }
+
+    .values .eyebrow{
+      color:#9d9d9d;
+    }
+
+    .values-head .section-copy{
+      color:#bcbcbc;
+      max-width:600px;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      border-top:1px solid rgba(255,255,255,.2);
+    }
+
+    .value-card{
+      min-height:315px;
+      padding:30px 28px;
+      border-right:1px solid rgba(255,255,255,.2);
+      border-bottom:1px solid rgba(255,255,255,.2);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      transition:.35s ease;
+    }
+
+    .value-card:first-child{
+      border-left:1px solid rgba(255,255,255,.2);
+    }
+
+    .value-card:hover{
+      background:#1b1b1b;
+      transform:translateY(-7px);
+    }
+
+    .value-num{
+      font-size:10px;
+      color:#8c8c8c;
+    }
+
+    .value-card h3{
+      font-family:"Manrope",sans-serif;
+      font-size:27px;
+      font-weight:500;
+      letter-spacing:-1.2px;
+      margin-bottom:15px;
+    }
+
+    .value-card p{
+      color:#aaa;
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    /* =========================================================
+       APPROACH
+    ========================================================= */
+
+    .approach{
+      padding:150px 0;
+      background:#fff;
+    }
+
+    .approach-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:100px;
+      align-items:start;
+    }
+
+    .approach-copy{
+      position:sticky;
+      top:120px;
+    }
+
+    .approach-copy .section-heading{
+      margin-bottom:28px;
+    }
+
+    .approach-copy .section-copy{
+      max-width:500px;
+    }
+
+    .approach-list{
+      border-top:1px solid var(--border);
+    }
+
+    .approach-row{
+      padding:34px 0;
+      border-bottom:1px solid var(--border);
+      display:grid;
+      grid-template-columns:58px 1fr 28px;
+      gap:16px;
+      align-items:start;
+    }
+
+    .approach-row .num{
+      font-size:11px;
+      color:#999;
+      padding-top:5px;
+    }
+
+    .approach-row h3{
+      font-size:21px;
+      font-weight:500;
+      margin-bottom:9px;
+    }
+
+    .approach-row p{
+      color:#777;
+      font-size:15px;
+      line-height:1.7;
+    }
+
+    .approach-arrow{
+      font-size:18px;
+      transition:.3s;
+    }
+
+    .approach-row:hover .approach-arrow{
+      transform:translate(5px,-5px);
+    }
+
+    /* =========================================================
+       STORY
+    ========================================================= */
+
+    .story{
+      height:760px;
+      position:relative;
+      overflow:hidden;
+      color:#fff;
+    }
+
+    .story > img{
+      position:absolute;
+      inset:0;
+      height:120%;
+      object-fit:cover;
+    }
+
+    .story:after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0,0,0,.72) 0%,
+          rgba(0,0,0,.45) 45%,
+          rgba(0,0,0,.16) 100%
+        );
+    }
+
+    .story .container{
+      position:relative;
+      z-index:2;
+      height:100%;
+      display:flex;
+      align-items:center;
+    }
+
+    .story-copy{
+      max-width:760px;
+    }
+
+    .story-copy .eyebrow{
+      color:#ccc;
+    }
+
+    .story-copy h2{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(54px,5.6vw,84px);
+      font-weight:500;
+      line-height:.94;
+      letter-spacing:-5px;
+      margin-bottom:28px;
+    }
+
+    .story-copy p{
+      color:#ddd;
+      font-size:18px;
+      line-height:1.8;
+      max-width:610px;
+    }
+
+    /* =========================================================
+       CTA
+    ========================================================= */
+
+    .final-cta{
+      background:#181818;
+      color:#fff;
+      padding:120px 0;
+    }
+
+    .cta-inner{
+      display:grid;
+      grid-template-columns:1fr .8fr;
+      gap:90px;
+      align-items:center;
+    }
+
+    .cta-title{
+      font-family:"Manrope",sans-serif;
+      font-size:clamp(54px,5vw,76px);
+      font-weight:500;
+      line-height:.96;
+      letter-spacing:-4px;
+      margin-bottom:27px;
+    }
+
+    .cta-copy p{
+      color:#c9c9c9;
+      font-size:18px;
+      line-height:1.8;
+      max-width:560px;
+      margin-bottom:34px;
+    }
+
+    .cta-buttons{
+      display:flex;
+      gap:13px;
+      flex-wrap:wrap;
+    }
+
+    .final-cta .primary-button{
+      background:#fff;
+      color:#111;
+    }
+
+    .final-cta .outline-button{
+      color:#fff;
+      border-color:rgba(255,255,255,.42);
+    }
+
+    .final-cta .outline-button:hover{
+      background:#fff;
+      color:#111;
+    }
+
+    .cta-image{
+      height:430px;
+      overflow:hidden;
+    }
+
+    .cta-image img{
+      height:115%;
+      object-fit:cover;
+    }
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    .footer{
+      background:#fff;
+      padding:80px 0 32px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:1.4fr repeat(3,1fr);
+      gap:65px;
+    }
+
+    .footer-about{
+      max-width:320px;
+      color:#777;
+      margin-top:20px;
+      font-size:14px;
+      line-height:1.75;
+    }
+
+    .footer-column h4{
+      font-size:11px;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      margin-bottom:22px;
+    }
+
+    .footer-column a{
+      display:block;
+      color:#747474;
+      font-size:13px;
+      margin-bottom:12px;
+      transition:.3s;
+    }
+
+    .footer-column a:hover{
+      color:#111;
+      transform:translateX(3px);
+    }
+
+    .footer-bottom{
+      margin-top:75px;
+      padding-top:24px;
+      border-top:1px solid #eee;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:20px;
+      color:#999;
+      font-size:10px;
+    }
+
+    /* =========================================================
+       ANIMATION
+    ========================================================= */
+
+    .reveal{
+      opacity:0;
+      transform:translateY(34px);
+    }
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media(max-width:1050px){
+
+      .phone{
+        display:none;
+      }
+
+      .menu-button{
+        display:block;
+      }
+
+      .navigation{
+        position:fixed;
+        top:0;
+        right:0;
+        width:min(390px,88vw);
+        height:100dvh;
+        padding:115px 40px 40px;
+        background:#f4f4f1;
+        z-index:1100;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:0;
+        transform:translateX(105%);
+        transition:.5s cubic-bezier(.77,0,.18,1);
+      }
+
+      .navigation.open{
+        transform:translateX(0);
+      }
+
+      .navigation a{
+        width:100%;
+        padding:18px 0;
+        border-bottom:1px solid #d8d8d4;
+        font:500 29px/1.1 "Manrope",sans-serif;
+      }
+
+      .navigation a:after{
+        display:none;
+      }
+
+      .about-hero-top,
+      .experience-grid,
+      .approach-grid,
+      .values-head,
+      .cta-inner{
+        gap:55px;
+      }
+
+      .about-hero h1{
+        font-size:72px;
+      }
+
+      .hero-media{
+        height:630px;
+      }
+
+      .experience-image{
+        height:620px;
+      }
+
+      .values-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .value-card:nth-child(3){
+        border-left:1px solid rgba(255,255,255,.2);
+      }
+    }
+
+    @media(max-width:760px){
+
+      .container{
+        width:min(var(--container),calc(100% - 32px));
+      }
+
+      .header{
+        height:70px;
+      }
+
+      .nav{
+        width:calc(100% - 30px);
+      }
+
+      .nav-right .nav-cta{
+        display:none;
+      }
+
+      .about-hero{
+        padding-top:125px;
+      }
+
+      .about-hero-top,
+      .intro-grid,
+      .experience-grid,
+      .approach-grid,
+      .values-head,
+      .cta-inner{
+        grid-template-columns:1fr;
+      }
+
+      .about-hero-top{
+        gap:35px;
+        padding-bottom:48px;
+      }
+
+      .about-hero h1{
+        font-size:clamp(58px,17vw,78px);
+        letter-spacing:-5px;
+      }
+
+      .about-hero-copy p,
+      .section-copy,
+      .intro-right p,
+      .story-copy p,
+      .cta-copy p{
+        font-size:16px;
+      }
+
+      .hero-media{
+        height:520px;
+      }
+
+      .hero-badge{
+        left:20px;
+        bottom:20px;
+        width:145px;
+        height:145px;
+        font-size:9px;
+      }
+
+      .hero-orbit{
+        left:92px;
+        bottom:92px;
+        width:275px;
+        height:275px;
+      }
+
+      .orbit-bubble{
+        width:46px;
+        height:46px;
+        font-size:7px;
+      }
+
+      .orbit-ring{inset:19px}
+
+      .intro,
+      .experience,
+      .values,
+      .approach{
+        padding:95px 0;
+      }
+
+      .intro-grid{
+        gap:35px;
+      }
+
+      .experience-grid{
+        gap:50px;
+      }
+
+      .experience-image{
+        height:500px;
+      }
+
+      .section-heading{
+        letter-spacing:-3px;
+      }
+
+      .stats{
+        padding:80px 0;
+      }
+
+      .stats-grid{
+        grid-template-columns:1fr;
+      }
+
+      .stat{
+        padding:26px 0;
+        border-right:0;
+        border-bottom:1px solid #ddd;
+      }
+
+      .stat:last-child{
+        border-bottom:0;
+      }
+
+      .stat-number{
+        font-size:54px;
+      }
+
+      .values-head{
+        gap:25px;
+        margin-bottom:45px;
+      }
+
+      .values-grid{
+        grid-template-columns:1fr;
+      }
+
+      .value-card,
+      .value-card:nth-child(3){
+        border-left:1px solid rgba(255,255,255,.2);
+      }
+
+      .approach-grid{
+        gap:55px;
+      }
+
+      .approach-copy{
+        position:static;
+      }
+
+      .story{
+        height:650px;
+      }
+
+      .story-copy h2{
+        letter-spacing:-3px;
+      }
+
+      .final-cta{
+        padding:90px 0;
+      }
+
+      .cta-image{
+        height:330px;
+      }
+
+      .footer-grid{
+        grid-template-columns:1fr 1fr;
+        gap:45px 30px;
+      }
+
+      .footer-bottom{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+
+    @media(max-width:520px){
+      .footer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .cta-buttons{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+    }
+  </style>
+  <style>
+    .logo-image{width:92px;height:auto;filter:invert(1)}
+    .services-menu{position:relative;display:flex;align-items:center}
+    .services-trigger{border:0;background:transparent;color:#4a4a4a;cursor:pointer;font-size:13px;padding:8px 0}
+    .services-trigger span{display:inline-block;margin-left:5px;transition:transform .25s ease}
+    .services-dropdown{position:absolute;top:100%;left:50%;width:230px;padding:10px;background:#fff;border:1px solid #dadad7;box-shadow:0 18px 35px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translate(-50%,8px);transition:opacity .25s ease,visibility .25s ease,transform .25s ease;z-index:300}
+    .services-menu:hover .services-dropdown,.services-menu:focus-within .services-dropdown{opacity:1;visibility:visible;transform:translate(-50%,0)}
+    .services-dropdown a{display:block!important;width:auto!important;padding:11px 12px!important;border:0!important;color:#555!important;font:13px/1.2 "DM Sans",sans-serif!important}
+    .services-dropdown a:hover{background:#f2f3f1;color:#111!important}
+    @media(max-width:1050px){
+      .navigation .services-menu{display:block;width:100%}
+      .navigation .services-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #d9d9d4;text-align:left;color:#111;font:500 clamp(25px,5vw,38px)/1.1 "Manrope",sans-serif;letter-spacing:-1.5px}
+      .navigation .services-dropdown{position:static;width:100%;padding:0 0 8px;background:transparent;border:0;box-shadow:none;opacity:0;visibility:hidden;transform:none;max-height:0;overflow:hidden;transition:opacity .25s ease,max-height .25s ease,visibility .25s ease}
+      .navigation .services-menu:focus-within .services-dropdown{opacity:1;visibility:visible;max-height:360px}
+      .navigation .services-dropdown a{padding:10px 0 10px 15px!important;color:#555!important;font:400 15px/1.2 "DM Sans",sans-serif!important}
+    }
+    @media(max-width:760px){.logo-image{width:72px}}
+  </style>
+</head>
+
+<body>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+<header class="header">
+  <div class="nav">
+
+    <a class="logo" href="index.html">
+      <img class="logo-image" src="seal-a-gap-dWHosRqp.svg" alt="Seal A Gap">
+    </a>
+
+    <nav class="navigation" id="mainNav">
+      <a href="index.html">Home</a>
+      <a href="about.html" class="active" aria-current="page">About Us</a>
+      <div class="services-menu">
+        <button class="services-trigger" type="button">Services <span>⌄</span></button>
+        <div class="services-dropdown">
+          <a href="services.html">All Services</a>
+          <a href="maintenance.html">Maintenance</a>
+          <a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a>
+          <a href="abseiling-services.html">Abseiling Services</a>
+          <a href="commercial-works.html">Commercial Works</a>
+          <a href="renovations.html">Renovations</a>
+          <a href="bathroom-sealing.html">Bathroom Sealing</a>
+        </div>
+      </div>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="nav-right">
+      <a class="phone" href="tel:0419800494">0419 800 494</a>
+      <a class="nav-cta" href="contact.html">Request a Quote</a>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mainNav">☰</button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div class="container">
+
+      <div class="about-hero-top">
+
+        <div>
+          <div class="eyebrow reveal">About Seal A Gap</div>
+
+          <h1 class="reveal">
+            Built on Experience.<br>
+            Focused on Detail.
+          </h1>
+        </div>
+
+        <div class="about-hero-copy reveal">
+          <p>
+            Seal A Gap provides specialist building, waterproofing, sealing,
+            maintenance and high-access solutions throughout Melbourne.
+            Our work combines practical construction knowledge with careful
+            execution, dependable communication and a strong focus on
+            long-term performance.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="hero-media">
+      <img
+        src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=88"
+        alt="Modern residential construction"
+      >
+
+      <div class="hero-badge">
+        Melbourne<br>
+        Construction<br>
+        & Property Services
+      </div>
+
+      <div class="hero-orbit" aria-hidden="true">
+        <div class="orbit-ring"></div>
+        <div class="orbit-bubble">Build</div>
+        <div class="orbit-bubble">Seal</div>
+        <div class="orbit-bubble">Care</div>
+        <div class="orbit-bubble">Detail</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHO WE ARE -->
+  <section class="intro">
+    <div class="container intro-grid">
+
+      <div class="intro-left reveal">
+        <div class="eyebrow">Who We Are</div>
+      </div>
+
+      <div class="intro-right">
+
+        <h2 class="intro-lead reveal">
+          Practical expertise for properties that need to perform as well as they look.
+        </h2>
+
+        <p class="reveal">
+          From protecting wet areas and sealing building joints to maintaining
+          commercial properties and completing difficult-access work,
+          Seal A Gap approaches every project with the same mindset:
+          understand the problem, choose the right solution and deliver the
+          work properly.
+        </p>
+
+        <p class="reveal">
+          Our experience across construction and property maintenance allows
+          us to look beyond the immediate repair. We consider the surrounding
+          building, access requirements, materials, durability and finish so
+          the completed work makes sense as part of the whole property.
+        </p>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- EXPERIENCE -->
+  <section class="experience">
+    <div class="container experience-grid">
+
+      <div class="experience-image reveal">
+        <img
+          src="https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&w=1600&q=88"
+          alt="Bathroom waterproofing and sealing"
+        >
+      </div>
+
+      <div class="experience-copy">
+
+        <div class="eyebrow reveal">Experience You Can Build On</div>
+
+        <h2 class="section-heading reveal">
+          More than a finish.<br>
+          A complete solution.
+        </h2>
+
+        <p class="section-copy reveal">
+          Good building work depends on what happens behind the finished surface.
+          Our approach brings together preparation, sealing, waterproofing,
+          maintenance knowledge and careful detailing to deliver work designed
+          for everyday use and long-term reliability.
+        </p>
+
+        <div class="experience-list">
+
+          <div class="experience-row reveal">
+            <div class="num">01</div>
+            <div>
+              <h3>Construction Knowledge</h3>
+              <p>
+                Practical experience helps us understand how each repair or
+                improvement connects to the wider building.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-row reveal">
+            <div class="num">02</div>
+            <div>
+              <h3>Specialist Services</h3>
+              <p>
+                Waterproofing, caulking, maintenance and rope-access capabilities
+                allow us to solve a wide range of property issues.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-row reveal">
+            <div class="num">03</div>
+            <div>
+              <h3>Attention to Detail</h3>
+              <p>
+                Careful preparation and clean finishing are treated as essential
+                parts of every job, not optional extras.
+              </p>
+            </div>
+          </div>
+
+          <div class="experience-row reveal">
+            <div class="num">04</div>
+            <div>
+              <h3>Reliable Delivery</h3>
+              <p>
+                Clear communication, practical planning and consistent workmanship
+                from assessment through to completion.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="container stats-grid">
+
+      <div class="stat reveal">
+        <div class="stat-number" data-count="30" data-suffix="+">0+</div>
+        <div class="stat-title">Years Construction Experience</div>
+      </div>
+
+      <div class="stat reveal">
+        <div class="stat-number" data-count="500" data-suffix="+">0+</div>
+        <div class="stat-title">Completed Works</div>
+      </div>
+
+      <div class="stat reveal">
+        <div class="stat-number" data-count="100" data-suffix="%">0%</div>
+        <div class="stat-title">Quality Focused</div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="container">
+
+      <div class="values-head">
+
+        <div>
+          <div class="eyebrow reveal">What Matters to Us</div>
+
+          <h2 class="section-heading reveal">
+            The standard behind every project.
+          </h2>
+        </div>
+
+        <p class="section-copy reveal">
+          We believe dependable building services come from a combination of
+          knowledge, communication and care. These principles guide how we
+          assess, plan and deliver every job.
+        </p>
+
+      </div>
+
+      <div class="values-grid">
+
+        <article class="value-card reveal">
+          <div class="value-num">01</div>
+          <div>
+            <h3>Quality</h3>
+            <p>
+              Materials, preparation and workmanship are selected with
+              long-term performance in mind.
+            </p>
+          </div>
+        </article>
+
+        <article class="value-card reveal">
+          <div class="value-num">02</div>
+          <div>
+            <h3>Clarity</h3>
+            <p>
+              We communicate what needs to be done, why it matters and how
+              we intend to approach it.
+            </p>
+          </div>
+        </article>
+
+        <article class="value-card reveal">
+          <div class="value-num">03</div>
+          <div>
+            <h3>Precision</h3>
+            <p>
+              Small details matter, particularly when waterproofing,
+              sealing and finishing a building correctly.
+            </p>
+          </div>
+        </article>
+
+        <article class="value-card reveal">
+          <div class="value-num">04</div>
+          <div>
+            <h3>Reliability</h3>
+            <p>
+              We aim to make the entire process straightforward,
+              professional and dependable from start to finish.
+            </p>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- APPROACH -->
+  <section class="approach">
+    <div class="container approach-grid">
+
+      <div class="approach-copy">
+
+        <div class="eyebrow reveal">Our Approach</div>
+
+        <h2 class="section-heading reveal">
+          Straightforward from first look to final detail.
+        </h2>
+
+        <p class="section-copy reveal">
+          Every site is different. We take the time to understand the property,
+          identify the real issue and determine a solution appropriate for the
+          environment rather than relying on a one-size-fits-all approach.
+        </p>
+
+      </div>
+
+      <div class="approach-list">
+
+        <div class="approach-row reveal">
+          <div class="num">01</div>
+          <div>
+            <h3>Consultation</h3>
+            <p>
+              We start by understanding the issue, project requirements,
+              priorities and desired outcome.
+            </p>
+          </div>
+          <div class="approach-arrow">↗</div>
+        </div>
+
+        <div class="approach-row reveal">
+          <div class="num">02</div>
+          <div>
+            <h3>Site Assessment</h3>
+            <p>
+              We assess access, existing conditions, surrounding materials
+              and any factors that may affect the work.
+            </p>
+          </div>
+          <div class="approach-arrow">↗</div>
+        </div>
+
+        <div class="approach-row reveal">
+          <div class="num">03</div>
+          <div>
+            <h3>Planning</h3>
+            <p>
+              We determine the most practical method, appropriate materials
+              and a clear plan for delivery.
+            </p>
+          </div>
+          <div class="approach-arrow">↗</div>
+        </div>
+
+        <div class="approach-row reveal">
+          <div class="num">04</div>
+          <div>
+            <h3>Delivery</h3>
+            <p>
+              The work is completed carefully with attention to protection,
+              workmanship, finish and communication.
+            </p>
+          </div>
+          <div class="approach-arrow">↗</div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- STORY -->
+  <section class="story">
+
+    <img
+      src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2200&q=88"
+      alt="Premium finished interior"
+    >
+
+    <div class="container">
+      <div class="story-copy">
+
+        <div class="eyebrow reveal">Built for Melbourne</div>
+
+        <h2 class="reveal">
+          Work that continues to perform after we leave.
+        </h2>
+
+        <p class="reveal">
+          A successful result is not only about how the work looks when
+          completed. Waterproofing, sealing and maintenance need to continue
+          doing their job well into the future. That long-term perspective
+          is built into how we approach every project.
+        </p>
+
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+  <section class="final-cta">
+
+    <div class="container cta-inner">
+
+      <div class="cta-copy">
+
+        <div class="eyebrow reveal">Work With Seal A Gap</div>
+
+        <h2 class="cta-title reveal">
+          Have a project<br>
+          in mind?
+        </h2>
+
+        <p class="reveal">
+          Whether you need waterproofing, caulking, maintenance,
+          commercial building work or specialist high-access services,
+          talk to our team about the right solution for your property.
+        </p>
+
+        <div class="cta-buttons reveal">
+          <a class="primary-button" href="contact.html">
+            Request a Quote <span>↗</span>
+          </a>
+
+          <a class="outline-button" href="tel:0419800494">
+            0419 800 494
+          </a>
+        </div>
+
+      </div>
+
+      <div class="cta-image reveal">
+        <img
+          src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1400&q=88"
+          alt="Seal A Gap property services"
+        >
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <div>
+        <a class="logo" href="sealagap_home_updated_services.html">
+          <span class="logo-mark">
+            <span></span>
+            <span></span>
+          </span>
+          <span>SEAL A GAP</span>
+        </a>
+
+        <p class="footer-about">
+          Professional waterproofing, caulking, maintenance,
+          commercial and high-access building services throughout
+          Melbourne and Victoria.
+        </p>
+      </div>
+
+
+      <div class="footer-column">
+        <h4>Company</h4>
+        <a href="about.html">About Us</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+
+      <div class="footer-column">
+        <h4>Services</h4>
+        <a href="maintenance.html">Maintenance</a>
+        <a href="caulking-waterproofing.html">Caulking & Waterproofing</a>
+        <a href="abseiling-services.html">Abseiling Services</a>
+        <a href="commercial-works.html">Commercial Works</a>
+        <a href="bathroom-sealing.html">Bathroom Sealing</a>
+      </div>
+
+
+      <div class="footer-column">
+        <h4>Contact</h4>
+        <a href="tel:0419800494">0419 800 494</a>
+        <a href="mailto:info@sealagap.com.au">info@sealagap.com.au</a>
+        <a href="#">Melbourne, Victoria</a>
+      </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+      <span>© 2026 Seal A Gap. All Rights Reserved.</span>
+      <span>Melbourne · Victoria</span>
+    </div>
+
+  </div>
+
+</footer>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* =========================================================
+     REVEAL ANIMATIONS
+  ========================================================= */
+
+  gsap.utils.toArray(".reveal").forEach((item) => {
+
+    gsap.to(item,{
+      opacity:1,
+      y:0,
+      duration:.9,
+      ease:"power3.out",
+
+      scrollTrigger:{
+        trigger:item,
+        start:"top 88%",
+        once:true
+      }
+    });
+
+  });
+
+
+  /* =========================================================
+     HERO IMAGE PARALLAX
+  ========================================================= */
+
+  gsap.to(".hero-media img",{
+    yPercent:-10,
+    ease:"none",
+
+    scrollTrigger:{
+      trigger:".hero-media",
+      start:"top bottom",
+      end:"bottom top",
+      scrub:1
+    }
+  });
+
+
+  /* =========================================================
+     MAGNETIC HERO ORBIT
+  ========================================================= */
+
+  const orbit = document.querySelector(".hero-orbit");
+  const orbitBubbles = orbit ? [...orbit.querySelectorAll(".orbit-bubble")] : [];
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let pointer = null;
+
+  if (orbit && orbitBubbles.length && !reducedMotion && window.matchMedia("(pointer:fine)").matches) {
+    const orbitState = orbitBubbles.map((bubble, index) => ({
+      bubble,
+      angle: (Math.PI * 2 / orbitBubbles.length) * index,
+      x: 0,
+      y: 0
+    }));
+
+    orbit.parentElement.addEventListener("pointermove", (event) => {
+      const bounds = orbit.getBoundingClientRect();
+      pointer = {x:event.clientX - bounds.left, y:event.clientY - bounds.top};
+    });
+
+    orbit.parentElement.addEventListener("pointerleave", () => {
+      pointer = null;
+      orbitBubbles.forEach((bubble) => bubble.classList.remove("is-near"));
+    });
+
+    const animateOrbit = (time) => {
+      const radius = orbit.clientWidth * .42;
+      const center = orbit.clientWidth / 2;
+      const elapsed = time * .00035;
+
+      orbitState.forEach((item) => {
+        const naturalX = center + Math.cos(item.angle + elapsed) * radius;
+        const naturalY = center + Math.sin(item.angle + elapsed) * radius;
+        let targetX = naturalX;
+        let targetY = naturalY;
+        let distance = Infinity;
+
+        if (pointer) {
+          const dx = pointer.x - naturalX;
+          const dy = pointer.y - naturalY;
+          distance = Math.hypot(dx, dy);
+          if (distance < 145) {
+            const pull = 1 - distance / 145;
+            targetX += dx * pull * .72;
+            targetY += dy * pull * .72;
+          }
+        }
+
+        item.x += (targetX - item.x) * .12;
+        item.y += (targetY - item.y) * .12;
+        item.bubble.style.transform = `translate(${item.x - center}px, ${item.y - center}px)`;
+        item.bubble.classList.toggle("is-near", distance < 145);
+      });
+
+      requestAnimationFrame(animateOrbit);
+    };
+
+    requestAnimationFrame(animateOrbit);
+  }
+
+
+  /* =========================================================
+     EXPERIENCE IMAGE PARALLAX
+  ========================================================= */
+
+  gsap.to(".experience-image img",{
+    yPercent:-9,
+    ease:"none",
+
+    scrollTrigger:{
+      trigger:".experience-image",
+      start:"top bottom",
+      end:"bottom top",
+      scrub:1
+    }
+  });
+
+
+  /* =========================================================
+     STORY IMAGE PARALLAX
+  ========================================================= */
+
+  gsap.to(".story > img",{
+    yPercent:-12,
+    ease:"none",
+
+    scrollTrigger:{
+      trigger:".story",
+      start:"top bottom",
+      end:"bottom top",
+      scrub:1
+    }
+  });
+
+
+  /* =========================================================
+     CTA IMAGE PARALLAX
+  ========================================================= */
+
+  gsap.to(".cta-image img",{
+    yPercent:-8,
+    ease:"none",
+
+    scrollTrigger:{
+      trigger:".cta-image",
+      start:"top bottom",
+      end:"bottom top",
+      scrub:1
+    }
+  });
+
+
+  /* =========================================================
+     STATS COUNTERS
+  ========================================================= */
+
+  document.querySelectorAll(".stat-number").forEach((number)=>{
+
+    const target = Number(number.dataset.count);
+    const suffix = number.dataset.suffix || "";
+
+    const counter = {value:0};
+
+    gsap.to(counter,{
+      value:target,
+      duration:1.8,
+      ease:"power2.out",
+
+      scrollTrigger:{
+        trigger:number,
+        start:"top 85%",
+        once:true
+      },
+
+      onUpdate:()=>{
+        number.textContent = Math.round(counter.value) + suffix;
+      }
+    });
+
+  });
+
+
+  /* =========================================================
+     MOBILE MENU
+  ========================================================= */
+
+  const menuButton = document.getElementById("menuButton");
+  const mainNav = document.getElementById("mainNav");
+  const drawerBackdrop = document.getElementById("drawerBackdrop");
+
+  function toggleMenu(){
+
+    menuButton.classList.toggle("open");
+    mainNav.classList.toggle("open");
+    drawerBackdrop.classList.toggle("open");
+
+    document.body.style.overflow =
+      mainNav.classList.contains("open") ? "hidden" : "";
+
+  }
+
+  menuButton.addEventListener("click",toggleMenu);
+  drawerBackdrop.addEventListener("click",toggleMenu);
+
+  mainNav.querySelectorAll("a").forEach((link)=>{
+    link.addEventListener("click",()=>{
+
+      menuButton.classList.remove("open");
+      mainNav.classList.remove("open");
+      drawerBackdrop.classList.remove("open");
+      document.body.style.overflow="";
+
+    });
+  });
+
+</script>
+
+</body>
+</html>
