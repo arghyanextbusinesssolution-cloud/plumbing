@@ -493,8 +493,6 @@ body.menu-open{overflow:hidden}
 .loader-leak{position:absolute;left:61%;top:50%;width:4px;height:4px;border-radius:50%;background:#b9d8d2;opacity:0}.page-loader.is-leaking .loader-leak{opacity:1;animation:leakDrop 1s ease-in infinite}@keyframes leakDrop{0%{transform:translateY(0);opacity:1}100%{transform:translateY(26px);opacity:0}}
 .loader-seal{position:absolute;left:59%;top:calc(50% - 10px);width:0;height:20px;border-top:2px solid #f1f1ec;border-bottom:2px solid #f1f1ec;opacity:0;transition:width .45s ease,opacity .2s ease}.page-loader.is-sealed .loader-seal{width:5%;opacity:1}
 .loader-frame{position:absolute;left:21%;top:25%;width:58%;height:50%;border:1px solid rgba(255,255,255,.85);opacity:0;transform:scale(.86);z-index:6;transition:opacity .5s ease,transform 1s cubic-bezier(.2,.8,.2,1)}.page-loader.is-sealed .loader-frame{opacity:1;transform:scale(1)}.page-loader.is-expanded .loader-pipe-network{opacity:0}
-.page-loader:not(.is-loaded) ~ .hero .hero-copy > *{opacity:0}
-.page-loader.is-loaded ~ .hero .hero-copy > *{opacity:1 !important}
 
 .chat-widget{
   position:fixed;
@@ -2269,13 +2267,16 @@ body.menu-open{overflow:hidden}
 
 @media(max-width:1050px){
 
-  .navigation,
   .phone{
     display:none;
   }
 
+  .navigation{
+    display:flex !important;
+  }
+
   .menu-button{
-    display:block;
+    display:flex;
   }
 
   .hero-grid{
@@ -2704,10 +2705,641 @@ body.menu-open{overflow:hidden}
 .loader-line span{display:block;width:0;height:100%;background:#fff;animation:loaderProgress 3.5s ease forwards}
 @keyframes loaderProgress{to{width:100%}}
 
+
+
+/* =========================================================
+   FINAL NAV + MOBILE RESPONSIVE OVERRIDES
+========================================================= */
+
+.services-menu{
+  position:relative;
+}
+
+.services-trigger{
+  border:0;
+  background:transparent;
+  color:#4a4a4a;
+  cursor:pointer;
+  font-size:13px;
+  padding:8px 0;
+}
+
+.services-trigger span{
+  display:inline-block;
+  margin-left:5px;
+  transition:transform .25s ease;
+}
+
+.services-dropdown{
+  position:absolute;
+  top:100%;
+  left:50%;
+  width:235px;
+  padding:10px;
+  background:#fff;
+  border:1px solid #dadad7;
+  box-shadow:0 18px 35px rgba(0,0,0,.12);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,8px);
+  transition:opacity .25s ease,visibility .25s ease,transform .25s ease;
+  z-index:500;
+}
+
+.services-menu:hover .services-dropdown,
+.services-menu:focus-within .services-dropdown,
+.services-menu.is-open .services-dropdown{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translate(-50%,0);
+}
+
+.services-menu:hover .services-trigger span,
+.services-menu:focus-within .services-trigger span,
+.services-menu.is-open .services-trigger span{
+  transform:rotate(180deg);
+}
+
+.services-dropdown a{
+  display:block !important;
+  width:auto !important;
+  padding:11px 12px !important;
+  border:0 !important;
+  color:#555 !important;
+  font:13px/1.25 "DM Sans",sans-serif !important;
+  letter-spacing:0 !important;
+  transform:none !important;
+  opacity:1 !important;
+}
+
+.services-dropdown a:hover{
+  background:#f2f3f1;
+  color:#111 !important;
+}
+
+.navigation .services-menu{
+  display:flex;
+  align-items:center;
+}
+
+@media(max-width:1050px){
+
+  .header{
+    z-index:300;
+  }
+
+  .phone{
+    display:none !important;
+  }
+
+  .navigation{
+    position:fixed !important;
+    top:0 !important;
+    right:0 !important;
+    left:auto !important;
+    width:min(390px,88vw) !important;
+    height:100dvh !important;
+    padding:110px 32px 36px !important;
+    display:flex !important;
+    align-items:flex-start !important;
+    flex-direction:column !important;
+    gap:0 !important;
+    background:#f4f4f1 !important;
+    box-shadow:-18px 0 60px rgba(0,0,0,.18) !important;
+    transform:translateX(105%) !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+    transition:
+      transform .5s cubic-bezier(.77,0,.18,1),
+      opacity .25s ease,
+      visibility .25s ease !important;
+    z-index:320 !important;
+  }
+
+  .navigation.is-open{
+    transform:translateX(0) !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+
+  .navigation > a{
+    width:100% !important;
+    padding:17px 0 !important;
+    border-bottom:1px solid #d9d9d4 !important;
+    color:#111 !important;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif !important;
+    letter-spacing:-1.4px !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+
+  .navigation > a:after{
+    display:none !important;
+  }
+
+  .navigation .services-menu{
+    display:block !important;
+    width:100%;
+  }
+
+  .navigation .services-trigger{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:17px 0;
+    border-bottom:1px solid #d9d9d4;
+    color:#111;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif;
+    letter-spacing:-1.4px;
+    text-align:left;
+  }
+
+  .navigation .services-dropdown{
+    position:static;
+    width:100%;
+    padding:0 0 8px;
+    border:0;
+    box-shadow:none;
+    background:transparent;
+    transform:none;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .3s ease,opacity .25s ease,visibility .25s ease;
+  }
+
+  .navigation .services-menu.is-open .services-dropdown{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+    max-height:420px;
+  }
+
+  .navigation .services-dropdown a{
+    padding:10px 0 10px 15px !important;
+    color:#555 !important;
+    font:400 15px/1.25 "DM Sans",sans-serif !important;
+  }
+
+  .drawer-backdrop{
+    z-index:280 !important;
+    pointer-events:none !important;
+  }
+
+  .drawer-backdrop.is-open{
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+
+  .nav-right{
+    position:relative;
+    z-index:340 !important;
+  }
+
+  .menu-button{
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    z-index:350 !important;
+    pointer-events:auto !important;
+    touch-action:manipulation;
+  }
+}
+
+@media(max-width:760px){
+
+  html,
+  body{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+  }
+
+  .container{
+    width:100%;
+    max-width:100%;
+    padding-left:20px;
+    padding-right:20px;
+  }
+
+  .header{
+    height:68px;
+  }
+
+  .nav{
+    width:100%;
+    padding:0 20px;
+  }
+
+  .logo-image{
+    width:66px;
+  }
+
+  .menu-button{
+    width:38px !important;
+    height:38px !important;
+    flex:0 0 38px;
+  }
+
+  .hero{
+    padding:112px 0 62px;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr !important;
+    gap:46px !important;
+  }
+
+  .hero-copy,
+  .hero-media-holder{
+    width:100%;
+    min-width:0;
+  }
+
+  .hero-title{
+    width:100%;
+    max-width:100%;
+    font-size:clamp(40px,11.7vw,50px) !important;
+    line-height:.95 !important;
+    letter-spacing:-2.8px !important;
+    margin-bottom:24px;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+
+  .hero-description{
+    max-width:100%;
+    font-size:15px !important;
+    line-height:1.65;
+    margin-bottom:28px;
+  }
+
+  .hero-buttons{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  .hero-media{
+    width:100%;
+    height:400px !important;
+  }
+
+  .hero-media img{
+    width:100%;
+    height:100% !important;
+    object-fit:cover;
+    transform:none !important;
+  }
+
+  .hero-media-decoration{
+    display:none;
+  }
+
+  .section{
+    padding:80px 0;
+  }
+
+  .section-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:25px;
+    margin-bottom:45px;
+  }
+
+  .section-heading{
+    font-size:clamp(38px,11vw,50px) !important;
+    line-height:1 !important;
+    letter-spacing:-2.5px !important;
+  }
+
+  .service-nav{
+    overflow-x:auto;
+  }
+
+  .service-nav-inner{
+    width:max-content;
+    min-width:100%;
+    display:flex;
+  }
+
+  .service-nav-item{
+    min-width:180px;
+    min-height:68px;
+    padding:0 20px;
+  }
+
+  .carousel-service-card{
+    width:82vw !important;
+    flex-basis:82vw !important;
+  }
+
+  .service-image{
+    height:400px !important;
+  }
+
+  .collage-grid,
+  .process-grid,
+  .why-grid,
+  .cta-inner{
+    grid-template-columns:1fr !important;
+  }
+
+  .process-cards{
+    grid-template-columns:1fr !important;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .stat{
+    padding:28px 0 !important;
+    border-right:0 !important;
+    border-bottom:1px solid #ddd;
+  }
+
+  .project-grid,
+  .project-bottom,
+  .project-column-right{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:16px !important;
+  }
+
+  .why-image{
+    height:460px !important;
+  }
+
+  .footer-grid{
+    grid-template-columns:1fr !important;
+    gap:45px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+
+/* Loader must never trap the page */
+.page-loader.is-loaded,
+.page-loader.is-expanded{
+  opacity:0 !important;
+  visibility:hidden !important;
+  pointer-events:none !important;
+}
+
+
+
+/* =========================================================
+   HERO VISIBILITY SAFETY FIX
+   The loader covers the page, so hero text must remain
+   naturally visible for GSAP to animate FROM opacity 0 TO 1.
+========================================================= */
+
+.hero-copy > *{
+  opacity:1;
+  visibility:visible;
+}
+
+@media(max-width:760px){
+  .hero-copy{
+    opacity:1 !important;
+    visibility:visible !important;
+  }
+
+  .hero-copy > *{
+    opacity:1;
+    visibility:visible;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL MOBILE HERO FIX
+========================================================= */
+
+@media(max-width:760px){
+
+  .hero{
+    padding:108px 0 62px !important;
+  }
+
+  .hero-grid{
+    grid-template-columns:1fr !important;
+    gap:42px !important;
+  }
+
+  .hero-copy{
+    display:block !important;
+    width:100% !important;
+    min-width:0 !important;
+    position:relative !important;
+    z-index:3 !important;
+  }
+
+  .hero-eyebrow{
+    display:block !important;
+    opacity:1;
+    visibility:visible;
+  }
+
+  .hero-title{
+    display:block !important;
+    opacity:1;
+    visibility:visible;
+    width:100% !important;
+    max-width:100% !important;
+    font-size:clamp(40px,11.6vw,49px) !important;
+    line-height:.96 !important;
+    letter-spacing:-2.7px !important;
+    margin-bottom:24px !important;
+  }
+
+  .hero-description{
+    display:block !important;
+    opacity:1;
+    visibility:visible;
+    max-width:100% !important;
+    font-size:15px !important;
+    line-height:1.68 !important;
+    margin-bottom:28px !important;
+  }
+
+  .hero-buttons{
+    display:flex !important;
+    opacity:1;
+    visibility:visible;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    gap:10px !important;
+  }
+
+  .hero-media{
+    height:400px !important;
+  }
+}
+
 </style>
 <style>
 .services-menu{position:relative}.services-trigger{border:0;background:transparent;color:#4a4a4a;cursor:pointer;font-size:13px;padding:8px 0}.services-trigger span{display:inline-block;margin-left:5px;transition:transform .25s ease}.services-dropdown{position:absolute;top:100%;left:50%;width:230px;padding:10px;background:#fff;border:1px solid #dadad7;box-shadow:0 18px 35px rgba(0,0,0,.12);opacity:0;visibility:hidden;transform:translate(-50%,8px);transition:opacity .25s ease,visibility .25s ease,transform .25s ease;z-index:300}.services-menu:hover .services-dropdown,.services-menu:focus-within .services-dropdown{opacity:1;visibility:visible;transform:translate(-50%,0)}.services-menu:hover .services-trigger span,.services-menu:focus-within .services-trigger span{transform:rotate(180deg)}.services-dropdown a{display:block!important;width:auto!important;padding:11px 12px!important;border:0!important;color:#555!important;font:13px/1.2 "DM Sans",sans-serif!important;transform:none!important;opacity:1!important}.services-dropdown a:hover{background:#f2f3f1;color:#111!important}.navigation .services-menu{display:flex;align-items:center}
 @media(max-width:1050px){.navigation .services-menu{display:block;width:100%}.navigation .services-trigger{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid #d9d9d4;text-align:left;color:#111;font:500 clamp(25px,5vw,38px)/1.1 "Manrope",sans-serif;letter-spacing:-1.5px}.navigation .services-dropdown{position:static;width:100%;padding:0 0 8px;background:transparent;border:0;box-shadow:none;opacity:0;visibility:hidden;transform:none;max-height:0;overflow:hidden;transition:opacity .25s ease,max-height .25s ease,visibility .25s ease}.navigation .services-menu:focus-within .services-dropdown{opacity:1;visibility:visible;max-height:360px}.navigation .services-dropdown a{padding:10px 0 10px 15px!important;color:#555!important;font:400 15px/1.2 "DM Sans",sans-serif!important}.navigation .services-menu:focus-within .services-trigger span{transform:rotate(180deg)}}
+
+
+/* =========================================================
+   FINAL MOBILE DRAWER + SERVICES ACCORDION FIX
+   This block must stay LAST so older dropdown rules cannot
+   override the mobile drawer behaviour.
+========================================================= */
+
+@media(max-width:1050px){
+
+  .navigation{
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .navigation .services-menu{
+    display:block !important;
+    width:100% !important;
+    flex:0 0 auto !important;
+    position:relative !important;
+    overflow:visible !important;
+  }
+
+  .navigation .services-trigger{
+    width:100% !important;
+    min-height:64px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    padding:17px 0 !important;
+    margin:0 !important;
+    border:0 !important;
+    border-bottom:1px solid #d9d9d4 !important;
+    background:transparent !important;
+    color:#111 !important;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif !important;
+    letter-spacing:-1.4px !important;
+    text-align:left !important;
+  }
+
+  /* IMPORTANT:
+     Use ONLY .is-open on mobile.
+     :focus-within was the reason it could remain open after tapping again. */
+  .navigation .services-dropdown,
+  .navigation .services-menu:focus-within .services-dropdown,
+  .navigation .services-menu:hover .services-dropdown{
+    position:static !important;
+    top:auto !important;
+    right:auto !important;
+    bottom:auto !important;
+    left:auto !important;
+
+    width:100% !important;
+    min-width:0 !important;
+    max-width:none !important;
+
+    display:none !important;
+
+    padding:8px 0 12px !important;
+    margin:0 !important;
+
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+
+    transform:none !important;
+    max-height:none !important;
+    overflow:visible !important;
+  }
+
+  .navigation .services-menu.is-open .services-dropdown,
+  .navigation .services-menu.is-open:focus-within .services-dropdown,
+  .navigation .services-menu.is-open:hover .services-dropdown{
+    display:block !important;
+  }
+
+  .navigation .services-dropdown a{
+    display:block !important;
+    width:100% !important;
+    padding:11px 14px !important;
+    margin:0 !important;
+
+    border:0 !important;
+    border-bottom:1px solid rgba(217,217,212,.72) !important;
+
+    background:transparent !important;
+    color:#5f5f5f !important;
+
+    font:400 14px/1.35 "DM Sans",sans-serif !important;
+    letter-spacing:0 !important;
+
+    opacity:1 !important;
+    visibility:visible !important;
+    transform:none !important;
+  }
+
+  .navigation .services-dropdown a:last-child{
+    border-bottom:0 !important;
+  }
+
+  .navigation .services-dropdown a:hover,
+  .navigation .services-dropdown a:focus{
+    background:rgba(0,0,0,.035) !important;
+    color:#111 !important;
+  }
+
+  .navigation .services-trigger span{
+    margin-left:20px !important;
+    transition:transform .25s ease !important;
+  }
+
+  /* Cancel hover/focus rotation on mobile */
+  .navigation .services-menu:hover .services-trigger span,
+  .navigation .services-menu:focus-within .services-trigger span{
+    transform:none !important;
+  }
+
+  /* Rotate only when our JS says the accordion is open */
+  .navigation .services-menu.is-open .services-trigger span,
+  .navigation .services-menu.is-open:focus-within .services-trigger span,
+  .navigation .services-menu.is-open:hover .services-trigger span{
+    transform:rotate(180deg) !important;
+  }
+}
+
+@media(max-width:760px){
+
+  .navigation{
+    padding:92px 28px 34px !important;
+  }
+
+  .navigation > a,
+  .navigation .services-trigger{
+    font-size:25px !important;
+  }
+
+  .navigation .services-dropdown a{
+    font-size:14px !important;
+  }
+}
+
 </style>
 
 </head>
@@ -2736,15 +3368,28 @@ body.menu-open{overflow:hidden}
 </a>
 
 
-<nav class="navigation">
+<nav class="navigation" id="site-navigation">
 
 <a href="index.html" class="active">Home</a>
 
 <a href="about.html">About Us</a>
 
-<div class="services-menu"><button class="services-trigger" type="button">Services <span>⌄</span></button><div class="services-dropdown"><a href="maintenance.html">Maintenance</a><a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a><a href="abseiling-services.html">Abseiling Services</a><a href="commercial-works.html">Commercial Works</a><a href="bathroom-sealing.html">Bathroom Sealing</a></div></div>
+<div class="services-menu">
+  <button class="services-trigger" type="button" aria-expanded="false" aria-controls="services-submenu">
+    Services <span>⌄</span>
+  </button>
 
-<a href="#projects">Projects</a>
+  <div class="services-dropdown" id="services-submenu">
+    <a href="services.html">All Services</a>
+    <a href="maintenance.html">Maintenance</a>
+    <a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a>
+    <a href="abseiling-services.html">Abseiling Services</a>
+    <a href="commercial-works.html">Commercial Works</a>
+    <a href="bathroom-sealing.html">Bathroom Sealing</a>
+  </div>
+</div>
+
+<a href="projects.html">Projects</a>
 
 <a href="contact.html">Contact</a>
 
@@ -2836,7 +3481,7 @@ Request a Quote
 </a>
 
 
-<a href="#projects" class="secondary-button">
+<a href="projects.html" class="secondary-button">
 
 View Our Work
 
@@ -3346,7 +3991,7 @@ together behind the scenes.
 
 
 <a
-href="#projects"
+href="projects.html"
 class="primary-button magnetic"
 data-cursor="Projects"
 style="margin-top:32px">
@@ -3756,7 +4401,7 @@ and how it performs over time.
 
 
 <a
-href="#projects"
+href="projects.html"
 class="white-button magnetic animated-cta"
 data-cursor="Explore">
 
@@ -4450,11 +5095,11 @@ Company
 Home
 </a>
 
-<a href="#about">
+<a href="about.html">
 About
 </a>
 
-<a href="#projects">
+<a href="projects.html">
 Projects
 </a>
 
@@ -4590,6 +5235,42 @@ Privacy Policy · Terms & Conditions
  GSAP
 ====================================================== -->
 
+
+<script>
+(function(){
+
+  const removeLoader = () => {
+
+    const loader = document.querySelector(".page-loader");
+
+    if(!loader){
+      return;
+    }
+
+    loader.classList.add("is-loaded");
+
+    window.setTimeout(()=>{
+      if(loader && loader.parentNode){
+        loader.parentNode.removeChild(loader);
+      }
+    },800);
+
+  };
+
+  /* Start countdown immediately — do not wait for all images/fonts. */
+  window.setTimeout(removeLoader,2800);
+
+  /* Fallback if the page finishes loading earlier/later. */
+  window.addEventListener("load",()=>{
+    window.setTimeout(removeLoader,250);
+  },{once:true});
+
+  /* Absolute failsafe. */
+  window.setTimeout(removeLoader,5000);
+
+})();
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -4611,6 +5292,11 @@ media.add("(min-width: 761px)",()=>{
 
 
 /* HERO LOAD */
+
+gsap.set(".hero-copy > *",{
+  opacity:1,
+  visibility:"visible"
+});
 
 const heroTL = gsap.timeline({
 
@@ -5380,28 +6066,40 @@ start:"top 72%"
 media.add("(max-width: 760px)",()=>{
 
 
-gsap.from(".hero-copy > *",{
-
-opacity:0,
-
-y:30,
-
-stagger:.1,
-
-duration:.7
-
+gsap.set(".hero-copy > *",{
+  opacity:1,
+  visibility:"visible"
 });
 
+gsap.fromTo(
+  ".hero-copy > *",
+  {
+    opacity:0,
+    y:30
+  },
+  {
+    opacity:1,
+    y:0,
+    stagger:.1,
+    duration:.7,
+    ease:"power3.out",
+    clearProps:"transform"
+  }
+);
 
-gsap.from(".hero-media",{
-
-opacity:0,
-
-y:40,
-
-duration:.9
-
-});
+gsap.fromTo(
+  ".hero-media",
+  {
+    opacity:0,
+    y:40
+  },
+  {
+    opacity:1,
+    y:0,
+    duration:.9,
+    ease:"power3.out"
+  }
+);
 
 
 gsap.utils
@@ -5525,7 +6223,7 @@ console.error("Service card has no data-page URL",card);
 return;
 }
 
-window.location.href = "services.html";
+window.location.href = page;
 }
 
 servicesCards.forEach(card=>{
@@ -6246,12 +6944,7 @@ cursorMove();
 
 
 
-document.querySelectorAll(".services-trigger").forEach(trigger => {
-trigger.addEventListener("click", (event) => {
-  event.preventDefault();
-  window.location.href = "services.html";
-});
-});
+
 
 document
 .querySelectorAll(
@@ -6320,96 +7013,158 @@ cursor.classList.remove(
 const menuButton =
 document.querySelector(".menu-button");
 
-
-if(menuButton){
-
-
-menuButton.addEventListener(
-"click",
-()=>{
-
-
-const navigation =
+const drawerNavigation =
 document.querySelector(".navigation");
 
+const drawerBackdrop =
+document.querySelector(".drawer-backdrop");
 
-if(false && window.innerWidth <= 1050){
+const servicesMenu =
+document.querySelector(".services-menu");
 
-
-const isOpen =
-navigation.dataset.open === "true";
-
-
-if(isOpen){
-
-
-navigation.style.display =
-"none";
+const servicesTrigger =
+document.querySelector(".services-trigger");
 
 
-navigation.dataset.open =
-"false";
+function closeServicesMenu(){
 
+  if(servicesMenu){
+    servicesMenu.classList.remove("is-open");
+  }
 
-}else{
-
-
-navigation.style.display =
-"flex";
-
-
-navigation.dataset.open =
-"true";
-
-
-navigation.style.position =
-"absolute";
-
-
-navigation.style.top =
-"70px";
-
-
-navigation.style.left =
-"15px";
-
-
-navigation.style.right =
-"15px";
-
-
-navigation.style.padding =
-"25px";
-
-
-navigation.style.background =
-"#fff";
-
-
-navigation.style.flexDirection =
-"column";
-
-
-navigation.style.alignItems =
-"flex-start";
-
-
-navigation.style.boxShadow =
-"0 20px 50px rgba(0,0,0,.08)";
-
+  if(servicesTrigger){
+    servicesTrigger.setAttribute("aria-expanded","false");
+  }
 
 }
 
 
+function closeDrawer(){
+
+  if(drawerNavigation){
+    drawerNavigation.classList.remove("is-open");
+  }
+
+  if(drawerBackdrop){
+    drawerBackdrop.classList.remove("is-open");
+  }
+
+  if(menuButton){
+    menuButton.classList.remove("is-open");
+    menuButton.setAttribute("aria-expanded","false");
+    menuButton.setAttribute("aria-label","Open navigation");
+  }
+
+  document.body.classList.remove("menu-open");
+
+  closeServicesMenu();
 }
 
 
+if(menuButton && drawerNavigation && drawerBackdrop){
+
+  menuButton.addEventListener("click",()=>{
+
+    const isOpen =
+    !drawerNavigation.classList.contains("is-open");
+
+    drawerNavigation.classList.toggle("is-open",isOpen);
+    drawerBackdrop.classList.toggle("is-open",isOpen);
+    menuButton.classList.toggle("is-open",isOpen);
+    document.body.classList.toggle("menu-open",isOpen);
+
+    menuButton.setAttribute("aria-expanded",String(isOpen));
+    menuButton.setAttribute(
+      "aria-label",
+      isOpen ? "Close navigation" : "Open navigation"
+    );
+
+    if(!isOpen){
+      closeServicesMenu();
+    }
+
+  });
+
+
+  drawerBackdrop.addEventListener(
+    "click",
+    closeDrawer
+  );
+
+
+  drawerNavigation
+  .querySelectorAll("a")
+  .forEach(link=>{
+
+    link.addEventListener(
+      "click",
+      closeDrawer
+    );
+
+  });
+
 }
-);
 
+
+if(servicesTrigger && servicesMenu){
+
+  servicesTrigger.addEventListener("click",(event)=>{
+
+    if(window.innerWidth <= 1050){
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      const willOpen =
+      !servicesMenu.classList.contains("is-open");
+
+      servicesMenu.classList.toggle("is-open",willOpen);
+
+      servicesTrigger.setAttribute(
+        "aria-expanded",
+        String(willOpen)
+      );
+
+      /* Remove keyboard/mouse focus after a tap so
+         :focus-within can never keep the submenu open. */
+      servicesTrigger.blur();
+
+    }
+
+  });
+
+
+  document.addEventListener("click",(event)=>{
+
+    if(
+      window.innerWidth <= 1050 &&
+      servicesMenu.classList.contains("is-open") &&
+      !servicesMenu.contains(event.target)
+    ){
+      closeServicesMenu();
+    }
+
+  });
 
 }
 
+
+document.addEventListener("keydown",event=>{
+
+  if(event.key === "Escape"){
+    closeDrawer();
+  }
+
+});
+
+
+window.addEventListener("resize",()=>{
+
+  if(window.innerWidth > 1050){
+    closeDrawer();
+  }
+
+});
 
 
 /* =========================================================
@@ -6430,44 +7185,6 @@ track.style.animationPlayState="running";
 },{passive:true});
 });
 
-const drawerNavigation =
-document.querySelector(".navigation");
-
-const drawerBackdrop =
-document.querySelector(".drawer-backdrop");
-
-function closeDrawer(){
-drawerNavigation.classList.remove("is-open");
-drawerBackdrop.classList.remove("is-open");
-menuButton.classList.remove("is-open");
-document.body.classList.remove("menu-open");
-menuButton.setAttribute("aria-expanded","false");
-menuButton.setAttribute("aria-label","Open navigation");
-}
-
-menuButton.addEventListener("click",()=>{
-const isOpen =
-drawerNavigation.classList.toggle("is-open");
-
-drawerBackdrop.classList.toggle("is-open",isOpen);
-menuButton.classList.toggle("is-open",isOpen);
-document.body.classList.toggle("menu-open",isOpen);
-menuButton.setAttribute("aria-expanded",String(isOpen));
-menuButton.setAttribute("aria-label",isOpen ? "Close navigation" : "Open navigation");
-});
-
-drawerBackdrop.addEventListener("click",closeDrawer);
-
-drawerNavigation.querySelectorAll("a").forEach(link=>{
-link.addEventListener("click",closeDrawer);
-});
-
-document.addEventListener("keydown",event=>{
-if(event.key === "Escape"){
-closeDrawer();
-}
-});
-
 window.addEventListener(
 "load",
 ()=>{
@@ -6475,12 +7192,7 @@ window.addEventListener(
 
 ScrollTrigger.refresh();
 
-const loader =
-document.querySelector(".page-loader");
 
-if(loader){
-setTimeout(()=>loader.classList.add("is-loaded"),3500);
-}
 
 const chatWidget =
 document.querySelector(".chat-widget");
