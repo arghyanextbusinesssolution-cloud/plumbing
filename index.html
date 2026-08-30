@@ -249,11 +249,16 @@ button{
 .drawer-backdrop{
   position:fixed;
   inset:0;
-  z-index:150;
+  z-index:120;
   background:rgba(16,16,16,.42);
   opacity:0;
   visibility:hidden;
+  pointer-events:none;
   transition:opacity .35s ease, visibility .35s ease;
+}
+
+.drawer-backdrop.is-open{
+  pointer-events:auto;
 }
 
 body.menu-open{overflow:hidden}
@@ -595,8 +600,11 @@ body.menu-open{overflow:hidden}
     background:#f4f4f1;
     box-shadow:-18px 0 60px rgba(0,0,0,.18);
     transform:translateX(105%);
-    transition:transform .55s cubic-bezier(.77,0,.18,1);
-    z-index:200;
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+    transition:transform .55s cubic-bezier(.77,0,.18,1), opacity .3s ease, visibility .3s ease;
+    z-index:220;
   }
 
   .navigation a{
@@ -612,7 +620,12 @@ body.menu-open{overflow:hidden}
 
   .navigation a:after{display:none}
 
-  .navigation.is-open{transform:translateX(0)}
+  .navigation.is-open{
+    transform:translateX(0);
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
 
   .navigation.is-open a{
     opacity:1;
@@ -623,6 +636,18 @@ body.menu-open{overflow:hidden}
   .navigation.is-open a:nth-child(2){transition-delay:.17s}
   .navigation.is-open a:nth-child(3){transition-delay:.22s}
   .navigation.is-open a:nth-child(4){transition-delay:.27s}
+
+  .nav-right{
+    position:relative;
+    z-index:250;
+    pointer-events:none;
+  }
+
+  .nav-right .menu-button,
+  .nav-right .nav-cta,
+  .nav-right .phone{
+    pointer-events:auto;
+  }
 
   .menu-button{
     position:relative;
@@ -637,6 +662,7 @@ body.menu-open{overflow:hidden}
     border-radius:50%;
     font-size:0;
     transition:background .3s ease, transform .3s ease;
+    pointer-events:auto;
   }
 
   .menu-button:before,
@@ -653,7 +679,15 @@ body.menu-open{overflow:hidden}
   .menu-button.is-open{background:#111;transform:rotate(45deg)}
   .menu-button.is-open:before,
   .menu-button.is-open:after{background:#fff}
-  .drawer-backdrop.is-open{opacity:1;visibility:visible}
+  .drawer-backdrop{
+    z-index:160;
+  }
+
+  .drawer-backdrop.is-open{
+    opacity:1;
+    visibility:visible;
+    pointer-events:auto;
+  }
 }
 
 .hero-grid{
@@ -2708,7 +2742,7 @@ body.menu-open{overflow:hidden}
 
 <a href="about.html">About Us</a>
 
-<div class="services-menu"><button class="services-trigger" type="button">Services <span>⌄</span></button><div class="services-dropdown"><a href="services.html">All Services</a><a href="maintenance.html">Maintenance</a><a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a><a href="abseiling-services.html">Abseiling Services</a><a href="commercial-works.html">Commercial Works</a><a href="renovations.html">Renovations</a><a href="bathroom-sealing.html">Bathroom Sealing</a></div></div>
+<div class="services-menu"><button class="services-trigger" type="button">Services <span>⌄</span></button><div class="services-dropdown"><a href="maintenance.html">Maintenance</a><a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a><a href="abseiling-services.html">Abseiling Services</a><a href="commercial-works.html">Commercial Works</a><a href="bathroom-sealing.html">Bathroom Sealing</a></div></div>
 
 <a href="#projects">Projects</a>
 
@@ -2779,9 +2813,9 @@ Designed to Last.
 <p class="hero-description">
 
 From professional waterproofing and caulking to
-renovations, maintenance and high-access building
-services, Seal A Gap delivers dependable construction
-solutions throughout Melbourne.
+maintenance and high-access building services, Seal A Gap
+delivers dependable construction solutions throughout
+Melbourne.
 
 </p>
 
@@ -3223,8 +3257,8 @@ Bathroom Sealing
 
 <p>
 
-Detailed sealing and waterproofing for wet areas,
-bathrooms and renovation projects.
+Detailed sealing and waterproofing for wet areas and
+bathrooms where finish and performance matter.
 
 </p>
 
@@ -4394,9 +4428,9 @@ alt="Bathroom">
 
 <p class="footer-about">
 
-Professional waterproofing, caulking, renovations,
-maintenance and high-access building services
-throughout Melbourne and Victoria.
+Professional waterproofing, caulking, maintenance and
+high-access building services throughout Melbourne and
+Victoria.
 
 </p>
 
@@ -4526,7 +4560,7 @@ Privacy Policy · Terms & Conditions
 <div class="chat-message" id="chat-message">Hi there. What do you need help with?</div>
 <div class="chat-options">
 <button class="chat-option" type="button" data-reply="We can help with waterproofing, sealing, and maintenance. Call 0419 800 494 for a quick assessment.">Waterproofing and sealing</button>
-<button class="chat-option" type="button" data-reply="We manage renovations from planning through to the finishing details. Send us your project and we will be in touch.">Renovation advice</button>
+<button class="chat-option" type="button" data-reply="We can help with waterproofing, sealing, maintenance, and access solutions. Send us your project details and we will be in touch.">Project advice</button>
 <button class="chat-option" type="button" data-reply="For a quote, call 0419 800 494 or use the Request a Quote form below.">Request a quote</button>
 </div>
 </div>
@@ -5491,7 +5525,7 @@ console.error("Service card has no data-page URL",card);
 return;
 }
 
-window.location.href = page;
+window.location.href = "services.html";
 }
 
 servicesCards.forEach(card=>{
@@ -6211,6 +6245,13 @@ cursorMove
 cursorMove();
 
 
+
+document.querySelectorAll(".services-trigger").forEach(trigger => {
+trigger.addEventListener("click", (event) => {
+  event.preventDefault();
+  window.location.href = "services.html";
+});
+});
 
 document
 .querySelectorAll(
