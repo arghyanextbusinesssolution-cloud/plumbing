@@ -1449,6 +1449,110 @@ body.menu-open{
 }
 </style>
 
+
+<style>
+/* =========================================================
+   SERVICES DIRECT LINK + ARROW TOGGLE
+========================================================= */
+
+.services-main-row{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.services-link{
+  font-size:13px;
+  color:#4a4a4a;
+  position:relative;
+}
+
+.services-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:1px;
+  background:#111;
+  transition:.3s;
+}
+
+.services-link:hover:after{
+  width:100%;
+}
+
+.services-trigger{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  min-width:22px;
+  height:28px;
+  padding:0 !important;
+}
+
+.services-trigger span{
+  margin-left:0 !important;
+}
+
+@media(max-width:1050px){
+
+  .navigation .services-main-row{
+    width:100% !important;
+    display:grid !important;
+    grid-template-columns:1fr 46px !important;
+    align-items:center !important;
+    gap:0 !important;
+    border-bottom:1px solid #d9d9d4 !important;
+  }
+
+  .navigation .services-link{
+    width:100% !important;
+    padding:17px 0 !important;
+    border:0 !important;
+    color:#111 !important;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif !important;
+    letter-spacing:-1.4px !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+
+  .navigation .services-link:after{
+    display:none !important;
+  }
+
+  .navigation .services-trigger{
+    width:46px !important;
+    min-width:46px !important;
+    height:58px !important;
+    padding:0 !important;
+    border:0 !important;
+    border-left:1px solid rgba(217,217,212,.75) !important;
+    border-bottom:0 !important;
+    background:transparent !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:19px !important;
+  }
+
+  .navigation .services-trigger span{
+    margin:0 !important;
+  }
+}
+
+@media(max-width:760px){
+  .navigation .services-link{
+    font-size:25px !important;
+  }
+
+  .navigation .services-trigger{
+    height:56px !important;
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -1469,16 +1573,24 @@ body.menu-open{
 
       <div class="services-menu">
 
-        <button
-          class="services-trigger"
-          type="button"
-          aria-expanded="false"
-          aria-controls="services-submenu">
-          Services <span>⌄</span>
-        </button>
+        <div class="services-main-row">
+
+          <a href="services.html" class="services-link">
+            Services
+          </a>
+
+          <button
+            class="services-trigger"
+            type="button"
+            aria-label="Open services menu"
+            aria-expanded="false"
+            aria-controls="services-submenu">
+            <span>⌄</span>
+          </button>
+
+        </div>
 
         <div class="services-dropdown" id="services-submenu">
-          <a href="services.html">All Services</a>
           <a href="maintenance.html">Maintenance</a>
           <a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a>
           <a href="abseiling-services.html">Abseiling Services</a>

@@ -178,30 +178,510 @@
       .footer-grid{grid-template-columns:1fr}
     }
   </style>
+
+<style>
+/* =========================================================
+   SHARED NAVBAR + SERVICES DIRECT LINK
+========================================================= */
+
+.header{
+  height:84px;
+  background:#fff;
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:300;
+  border-bottom:1px solid rgba(0,0,0,.1);
+}
+
+.nav{
+  width:min(1380px,calc(100% - 60px));
+  height:100%;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0;
+}
+
+.header .logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:18px;
+  font-weight:600;
+  letter-spacing:-.7px;
+}
+
+.header .logo-image{
+  width:92px;
+  height:auto;
+  filter:invert(1);
+}
+
+.navigation{
+  display:flex;
+  align-items:center;
+  gap:38px;
+}
+
+.navigation > a{
+  font-size:13px;
+  color:#4a4a4a;
+  position:relative;
+}
+
+.navigation > a:after,
+.services-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:1px;
+  background:#111;
+  transition:.3s;
+}
+
+.navigation > a:hover:after,
+.navigation > a.active:after,
+.services-link:hover:after{
+  width:100%;
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.phone{
+  font-size:13px;
+}
+
+.nav-cta{
+  background:#111;
+  color:#fff;
+  min-height:45px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0 23px;
+  border-radius:100px;
+  font-size:12px;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:color .4s ease,transform .3s ease;
+}
+
+.nav-cta:before{
+  content:"";
+  position:absolute;
+  width:155%;
+  height:260%;
+  left:-27%;
+  top:115%;
+  border-radius:50%;
+  background:#fff;
+  transition:top .55s cubic-bezier(.76,0,.24,1);
+  z-index:-1;
+}
+
+.nav-cta:hover{
+  color:#111;
+  transform:translateY(-3px);
+}
+
+.nav-cta:hover:before{
+  top:-75%;
+}
+
+.services-menu{
+  position:relative;
+}
+
+.services-main-row{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.services-link{
+  font-size:13px;
+  color:#4a4a4a;
+  position:relative;
+}
+
+.services-trigger{
+  border:0;
+  background:transparent;
+  color:#4a4a4a;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  min-width:22px;
+  height:28px;
+  padding:0;
+}
+
+.services-trigger span{
+  display:inline-block;
+  transition:transform .25s ease;
+}
+
+.services-dropdown{
+  position:absolute;
+  top:100%;
+  left:50%;
+  width:235px;
+  padding:10px;
+  background:#fff;
+  border:1px solid #dadad7;
+  box-shadow:0 18px 35px rgba(0,0,0,.12);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translate(-50%,8px);
+  transition:opacity .25s ease,visibility .25s ease,transform .25s ease;
+  z-index:500;
+}
+
+.services-menu:hover .services-dropdown,
+.services-menu:focus-within .services-dropdown,
+.services-menu.is-open .services-dropdown{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translate(-50%,0);
+}
+
+.services-menu:hover .services-trigger span,
+.services-menu:focus-within .services-trigger span,
+.services-menu.is-open .services-trigger span{
+  transform:rotate(180deg);
+}
+
+.services-dropdown a{
+  display:block !important;
+  width:auto !important;
+  padding:11px 12px !important;
+  border:0 !important;
+  color:#555 !important;
+  font:13px/1.25 "DM Sans",sans-serif !important;
+  letter-spacing:0 !important;
+}
+
+.services-dropdown a:after{
+  display:none !important;
+}
+
+.services-dropdown a:hover{
+  background:#f2f3f1;
+  color:#111 !important;
+}
+
+.menu-button{
+  display:none;
+  border:none;
+  background:none;
+  cursor:pointer;
+}
+
+.drawer-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:280;
+  background:rgba(16,16,16,.42);
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:opacity .35s ease,visibility .35s ease;
+}
+
+.drawer-backdrop.is-open{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+}
+
+body.menu-open{
+  overflow:hidden;
+}
+
+@media(max-width:1050px){
+
+  .phone{
+    display:none !important;
+  }
+
+  .navigation{
+    position:fixed !important;
+    top:0 !important;
+    right:0 !important;
+    left:auto !important;
+    width:min(390px,88vw) !important;
+    height:100dvh !important;
+    padding:110px 32px 36px !important;
+    display:flex !important;
+    align-items:flex-start !important;
+    flex-direction:column !important;
+    gap:0 !important;
+    background:#f4f4f1 !important;
+    box-shadow:-18px 0 60px rgba(0,0,0,.18) !important;
+    transform:translateX(105%) !important;
+    opacity:0 !important;
+    visibility:hidden !important;
+    pointer-events:none !important;
+    transition:transform .5s cubic-bezier(.77,0,.18,1),opacity .25s ease,visibility .25s ease !important;
+    z-index:320 !important;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .navigation.is-open{
+    transform:translateX(0) !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+  }
+
+  .navigation > a{
+    width:100% !important;
+    padding:17px 0 !important;
+    border-bottom:1px solid #d9d9d4 !important;
+    color:#111 !important;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif !important;
+    letter-spacing:-1.4px !important;
+  }
+
+  .navigation > a:after{
+    display:none !important;
+  }
+
+  .navigation .services-menu{
+    display:block !important;
+    width:100% !important;
+  }
+
+  .navigation .services-main-row{
+    width:100% !important;
+    display:grid !important;
+    grid-template-columns:1fr 46px !important;
+    align-items:center !important;
+    gap:0 !important;
+    border-bottom:1px solid #d9d9d4 !important;
+  }
+
+  .navigation .services-link{
+    width:100% !important;
+    padding:17px 0 !important;
+    color:#111 !important;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif !important;
+    letter-spacing:-1.4px !important;
+  }
+
+  .navigation .services-link:after{
+    display:none !important;
+  }
+
+  .navigation .services-trigger{
+    width:46px !important;
+    min-width:46px !important;
+    height:58px !important;
+    border-left:1px solid rgba(217,217,212,.75) !important;
+    background:transparent !important;
+    font-size:19px !important;
+  }
+
+  .navigation .services-dropdown,
+  .navigation .services-menu:hover .services-dropdown,
+  .navigation .services-menu:focus-within .services-dropdown{
+    position:static !important;
+    width:100% !important;
+    display:none !important;
+    padding:8px 0 12px !important;
+    margin:0 !important;
+    background:transparent !important;
+    border:0 !important;
+    box-shadow:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    pointer-events:auto !important;
+    transform:none !important;
+  }
+
+  .navigation .services-menu.is-open .services-dropdown,
+  .navigation .services-menu.is-open:hover .services-dropdown,
+  .navigation .services-menu.is-open:focus-within .services-dropdown{
+    display:block !important;
+  }
+
+  .navigation .services-dropdown a{
+    width:100% !important;
+    padding:11px 14px !important;
+    border-bottom:1px solid rgba(217,217,212,.72) !important;
+    background:transparent !important;
+    color:#5f5f5f !important;
+    font:400 14px/1.35 "DM Sans",sans-serif !important;
+  }
+
+  .navigation .services-dropdown a:last-child{
+    border-bottom:0 !important;
+  }
+
+  .navigation .services-menu:hover .services-trigger span,
+  .navigation .services-menu:focus-within .services-trigger span{
+    transform:none !important;
+  }
+
+  .navigation .services-menu.is-open .services-trigger span{
+    transform:rotate(180deg) !important;
+  }
+
+  .nav-right{
+    position:relative;
+    z-index:340 !important;
+  }
+
+  .menu-button{
+    position:relative;
+    display:flex !important;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    padding:0;
+    border:1px solid rgba(0,0,0,.18);
+    border-radius:50%;
+    background:#fff;
+    z-index:350 !important;
+    font-size:0;
+  }
+
+  .menu-button:before,
+  .menu-button:after{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:15px;
+    height:1px;
+    background:#111;
+    transform:translate(-50%,-50%);
+    transition:transform .3s ease;
+  }
+
+  .menu-button:after{
+    transform:translate(-50%,-50%) rotate(90deg);
+  }
+
+  .menu-button.is-open{
+    background:#111;
+    transform:rotate(45deg);
+  }
+
+  .menu-button.is-open:before,
+  .menu-button.is-open:after{
+    background:#fff;
+  }
+}
+
+@media(max-width:760px){
+  .header{height:68px}
+  .nav{width:100%;padding:0 20px}
+  .header .logo-image{width:66px}
+  .menu-button{width:38px !important;height:38px !important;flex:0 0 38px}
+  .navigation{padding:92px 28px 34px !important}
+  .navigation > a,
+  .navigation .services-link{font-size:25px !important}
+  .navigation .services-trigger{height:56px !important}
+  .navigation .services-dropdown a{font-size:14px !important}
+}
+</style>
+
 </head>
 <body>
 
 <header class="header">
+
   <div class="nav">
-    <a class="logo" href="index.html">
-      <span class="logo-mark"><span></span><span></span></span>
-      <span>SEAL A GAP</span>
+
+    <a href="index.html" class="logo">
+      <img class="logo-image" src="seal-a-gap-dWHosRqp.svg" alt="Seal A Gap">
     </a>
 
-    <nav class="navigation">
+    <nav class="navigation" id="site-navigation">
+
       <a href="index.html">Home</a>
-      <a href="index.html#services">Services</a>
+
       <a href="about.html">About Us</a>
-      <a class="active" href="projects.html">Projects</a>
+
+      <div class="services-menu">
+
+        <div class="services-main-row">
+
+          <a href="services.html" class="services-link">
+            Services
+          </a>
+
+          <button
+            class="services-trigger"
+            type="button"
+            aria-label="Open services menu"
+            aria-expanded="false"
+            aria-controls="services-submenu">
+            <span>⌄</span>
+          </button>
+
+        </div>
+
+        <div class="services-dropdown" id="services-submenu">
+          <a href="maintenance.html">Maintenance</a>
+          <a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a>
+          <a href="abseiling-services.html">Abseiling Services</a>
+          <a href="commercial-works.html">Commercial Works</a>
+          <a href="bathroom-sealing.html">Bathroom Sealing</a>
+        </div>
+
+      </div>
+
+      <a href="projects.html" class="active" aria-current="page">Projects</a>
+
       <a href="contact.html">Contact</a>
+
     </nav>
 
     <div class="nav-right">
-      <a class="phone" href="tel:0419800494">0419 800 494</a>
-      <a class="nav-cta" href="contact.html">Request a Quote</a>
+
+      <a class="phone" href="tel:0419800494">
+        0419 800 494
+      </a>
+
+      <a href="contact.html" class="nav-cta">
+        Request a Quote
+      </a>
+
+      <button
+        class="menu-button"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="site-navigation">
+        ☰
+      </button>
+
     </div>
+
   </div>
+
 </header>
+
+<div class="drawer-backdrop"></div>
 
 <main>
 
@@ -413,6 +893,96 @@
     ease:'none',
     scrollTrigger:{trigger:'.next-project',start:'top bottom',end:'bottom top',scrub:1}
   });
+</script>
+
+
+<script>
+const menuButton = document.querySelector(".menu-button");
+const navigation = document.querySelector(".navigation");
+const backdrop = document.querySelector(".drawer-backdrop");
+const servicesMenu = document.querySelector(".services-menu");
+const servicesTrigger = document.querySelector(".services-trigger");
+
+function closeServicesMenu(){
+  if(servicesMenu){
+    servicesMenu.classList.remove("is-open");
+  }
+  if(servicesTrigger){
+    servicesTrigger.setAttribute("aria-expanded","false");
+    servicesTrigger.setAttribute("aria-label","Open services menu");
+  }
+}
+
+function closeMenu(){
+  if(navigation){ navigation.classList.remove("is-open"); }
+  if(backdrop){ backdrop.classList.remove("is-open"); }
+  if(menuButton){
+    menuButton.classList.remove("is-open");
+    menuButton.setAttribute("aria-expanded","false");
+    menuButton.setAttribute("aria-label","Open navigation");
+  }
+  document.body.classList.remove("menu-open");
+  closeServicesMenu();
+}
+
+if(menuButton && navigation && backdrop){
+  menuButton.addEventListener("click",()=>{
+    const isOpen = !navigation.classList.contains("is-open");
+    navigation.classList.toggle("is-open",isOpen);
+    backdrop.classList.toggle("is-open",isOpen);
+    menuButton.classList.toggle("is-open",isOpen);
+    document.body.classList.toggle("menu-open",isOpen);
+    menuButton.setAttribute("aria-expanded",String(isOpen));
+    menuButton.setAttribute("aria-label",isOpen ? "Close navigation" : "Open navigation");
+    if(!isOpen){ closeServicesMenu(); }
+  });
+
+  backdrop.addEventListener("click",closeMenu);
+
+  navigation.querySelectorAll("a").forEach(link=>{
+    link.addEventListener("click",closeMenu);
+  });
+}
+
+if(servicesTrigger && servicesMenu){
+  servicesTrigger.addEventListener("click",(event)=>{
+    if(window.innerWidth <= 1050){
+      event.preventDefault();
+      event.stopPropagation();
+
+      const willOpen = !servicesMenu.classList.contains("is-open");
+      servicesMenu.classList.toggle("is-open",willOpen);
+      servicesTrigger.setAttribute("aria-expanded",String(willOpen));
+      servicesTrigger.setAttribute(
+        "aria-label",
+        willOpen ? "Close services menu" : "Open services menu"
+      );
+      servicesTrigger.blur();
+    }
+  });
+
+  document.addEventListener("click",(event)=>{
+    if(
+      window.innerWidth <= 1050 &&
+      servicesMenu.classList.contains("is-open") &&
+      !servicesMenu.contains(event.target)
+    ){
+      closeServicesMenu();
+    }
+  });
+}
+
+document.addEventListener("keydown",(event)=>{
+  if(event.key === "Escape"){
+    closeMenu();
+  }
+});
+
+window.addEventListener("resize",()=>{
+  if(window.innerWidth > 1050){
+    closeMenu();
+  }
+});
 </script>
 
 </body>

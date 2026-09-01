@@ -496,6 +496,231 @@ body.menu-open{
 }
 </style>
 
+
+<style>
+/* =========================================================
+   SERVICES DIRECT LINK + ARROW TOGGLE
+========================================================= */
+
+.services-main-row{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+
+.services-link{
+  font-size:13px;
+  color:#4a4a4a;
+  position:relative;
+}
+
+.services-link:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  width:0;
+  height:1px;
+  background:#111;
+  transition:.3s;
+}
+
+.services-link:hover:after{
+  width:100%;
+}
+
+.services-trigger{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:22px;
+  min-width:22px;
+  height:28px;
+  padding:0 !important;
+}
+
+.services-trigger span{
+  margin-left:0 !important;
+}
+
+@media(max-width:1050px){
+
+  .navigation .services-main-row{
+    width:100% !important;
+    display:grid !important;
+    grid-template-columns:1fr 46px !important;
+    align-items:center !important;
+    gap:0 !important;
+    border-bottom:1px solid #d9d9d4 !important;
+  }
+
+  .navigation .services-link{
+    width:100% !important;
+    padding:17px 0 !important;
+    border:0 !important;
+    color:#111 !important;
+    font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif !important;
+    letter-spacing:-1.4px !important;
+    opacity:1 !important;
+    transform:none !important;
+  }
+
+  .navigation .services-link:after{
+    display:none !important;
+  }
+
+  .navigation .services-trigger{
+    width:46px !important;
+    min-width:46px !important;
+    height:58px !important;
+    padding:0 !important;
+    border:0 !important;
+    border-left:1px solid rgba(217,217,212,.75) !important;
+    border-bottom:0 !important;
+    background:transparent !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    font-size:19px !important;
+  }
+
+  .navigation .services-trigger span{
+    margin:0 !important;
+  }
+}
+
+@media(max-width:760px){
+  .navigation .services-link{
+    font-size:25px !important;
+  }
+
+  .navigation .services-trigger{
+    height:56px !important;
+  }
+}
+</style>
+
+
+<style>
+/* =========================================================
+   MOBILE HEADER — KEEP REQUEST A QUOTE
+========================================================= */
+@media (max-width:760px){
+
+  .header{
+    height:68px !important;
+    background:#fff !important;
+  }
+
+  .nav{
+    width:100% !important;
+    height:68px !important;
+    padding:0 14px !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:space-between !important;
+    gap:10px !important;
+  }
+
+  .header .logo{
+    flex:0 0 auto !important;
+    margin:0 !important;
+  }
+
+  .header .logo:before{
+    display:none !important;
+    content:none !important;
+  }
+
+  .logo-image{
+    display:block !important;
+    width:66px !important;
+    height:auto !important;
+    filter:invert(1) !important;
+  }
+
+  .nav-right{
+    margin-left:auto !important;
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:9px !important;
+    flex:0 0 auto !important;
+  }
+
+  .nav-right .phone{
+    display:none !important;
+  }
+
+  .nav-right .nav-cta{
+    display:inline-flex !important;
+    min-height:36px !important;
+    height:36px !important;
+    padding:0 14px !important;
+    border-radius:100px !important;
+    font-size:10px !important;
+    line-height:1 !important;
+    white-space:nowrap !important;
+    flex:0 0 auto !important;
+  }
+
+  .menu-button{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    width:36px !important;
+    height:36px !important;
+    min-width:36px !important;
+    flex:0 0 36px !important;
+    padding:0 !important;
+    margin:0 !important;
+    border:1px solid rgba(0,0,0,.18) !important;
+    border-radius:50% !important;
+    background:#fff !important;
+    position:relative !important;
+    z-index:350 !important;
+  }
+
+  .navigation{
+    top:0 !important;
+    right:0 !important;
+    width:min(390px,88vw) !important;
+    height:100dvh !important;
+    padding:92px 28px 34px !important;
+    z-index:320 !important;
+  }
+}
+
+@media (max-width:390px){
+  .nav{
+    padding:0 12px !important;
+    gap:8px !important;
+  }
+
+  .logo-image{
+    width:60px !important;
+  }
+
+  .nav-right{
+    gap:7px !important;
+  }
+
+  .nav-right .nav-cta{
+    height:34px !important;
+    min-height:34px !important;
+    padding:0 11px !important;
+    font-size:9px !important;
+  }
+
+  .menu-button{
+    width:34px !important;
+    height:34px !important;
+    min-width:34px !important;
+    flex-basis:34px !important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="header">
@@ -514,16 +739,24 @@ body.menu-open{
 
       <div class="services-menu">
 
-        <button
-          class="services-trigger"
-          type="button"
-          aria-expanded="false"
-          aria-controls="services-submenu">
-          Services <span>⌄</span>
-        </button>
+        <div class="services-main-row">
+
+          <a href="services.html" class="services-link">
+            Services
+          </a>
+
+          <button
+            class="services-trigger"
+            type="button"
+            aria-label="Open services menu"
+            aria-expanded="false"
+            aria-controls="services-submenu">
+            <span>⌄</span>
+          </button>
+
+        </div>
 
         <div class="services-dropdown" id="services-submenu">
-          <a href="services.html">All Services</a>
           <a href="maintenance.html">Maintenance</a>
           <a href="caulking-waterproofing.html">Caulking &amp; Waterproofing</a>
           <a href="abseiling-services.html">Abseiling Services</a>
@@ -599,6 +832,7 @@ function closeServicesMenu(){
 
   if(servicesTrigger){
     servicesTrigger.setAttribute("aria-expanded","false");
+    servicesTrigger.setAttribute("aria-label","Open services menu");
   }
 
 }
@@ -675,6 +909,11 @@ if(servicesTrigger && servicesMenu){
       servicesTrigger.setAttribute(
         "aria-expanded",
         String(willOpen)
+      );
+
+      servicesTrigger.setAttribute(
+        "aria-label",
+        willOpen ? "Close services menu" : "Open services menu"
       );
 
       servicesTrigger.blur();

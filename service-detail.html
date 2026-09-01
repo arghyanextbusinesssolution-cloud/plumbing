@@ -9,70 +9,23 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{--ink:#171717;--muted:#707070;--line:#deded9;--paper:#f4f4f1;--accent:#d8e2dc}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}
-a{color:inherit;text-decoration:none}
-.detail-nav{height:88px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line);position:relative;z-index:2}
-.detail-about{font-size:13px;margin-left:auto;margin-right:32px}
-.brand{font-size:18px;font-weight:600;letter-spacing:-.7px}
-.back{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;display:flex;gap:12px;align-items:center}
-.back span{font-size:20px;line-height:0}
-.detail-hero{min-height:calc(100vh - 88px);display:grid;grid-template-columns:43% 57%;background:#fff}
-.hero-copy{padding:clamp(70px,10vw,150px) 7vw;display:flex;flex-direction:column;justify-content:center}
-.kicker{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:28px}
-h1{font:500 clamp(54px,7vw,112px)/.94 "Manrope",sans-serif;letter-spacing:-5px;max-width:650px}
-.hero-copy p{color:var(--muted);font-size:17px;line-height:1.8;max-width:450px;margin-top:38px}
-.hero-image{min-height:650px;overflow:hidden}
-.hero-image img{height:100%;width:100%;object-fit:cover;filter:grayscale(100%);transition:filter .6s ease}
-.hero-image:hover img{filter:grayscale(0)}
-.page-transition-image{position:fixed;z-index:10;object-fit:cover;pointer-events:none;filter:grayscale(100%);transition:all .8s cubic-bezier(.2,.8,.2,1)}
-.detail-content{max-width:1280px;margin:auto;padding:130px 5vw 150px}
-.content-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:11vw;border-top:1px solid var(--line);padding-top:28px}
-.content-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
-.content-copy{max-width:650px}
-.content-copy h2{font:500 clamp(32px,4vw,58px)/1.04 "Manrope",sans-serif;letter-spacing:-2px;margin-bottom:30px}
-.content-copy p{font-size:17px;line-height:1.85;color:#555;margin-bottom:25px}
-.detail-band{margin-top:130px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.detail-band img{width:100%;height:540px;object-fit:cover;filter:grayscale(100%)}
-.detail-band img:last-child{margin-top:100px}
-.detail-footer{padding:55px 5vw;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1.3px;text-transform:uppercase}
-@media(max-width:760px){.detail-nav{height:72px;padding:0 24px}.detail-hero{display:block;min-height:0}.hero-copy{padding:80px 24px 65px}h1{font-size:58px;letter-spacing:-3px}.hero-copy p{font-size:15px;margin-top:28px}.hero-image{height:72vh;min-height:430px}.detail-content{padding:85px 24px 100px}.content-grid{display:block}.content-copy{margin-top:35px}.content-copy h2{font-size:40px}.content-copy p{font-size:15px}.detail-band{display:block;margin-top:80px}.detail-band img{height:430px;margin:0 0 18px!important}.detail-footer{padding:35px 24px;display:block;line-height:2}}
-</style>
-<style>
-.detail-nav .brand{font-size:0}.detail-nav .brand:before{content:"";display:block;width:92px;height:64px;background:url("seal-a-gap-dWHosRqp.svg") center/contain no-repeat}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{background:var(--paper);color:var(--ink);font-family:"DM Sans",sans-serif}a{color:inherit;text-decoration:none}
+.header{height:84px;background:#fff;position:relative;width:100%;z-index:300;border-bottom:1px solid rgba(0,0,0,.1)}
+.nav{width:min(1380px,calc(100% - 60px));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between}.logo{display:flex;align-items:center}.logo-image{width:92px;height:auto;filter:invert(1)}
+.navigation{display:flex;align-items:center;gap:38px}.navigation>a{font-size:13px;color:#4a4a4a;position:relative}.navigation>a:after,.services-link:after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:#111;transition:.3s}.navigation>a:hover:after,.navigation>a.active:after,.services-link:hover:after{width:100%}
+.services-menu{position:relative}.services-main-row{display:flex;align-items:center;gap:5px}.services-link{font-size:13px;color:#4a4a4a;position:relative}.services-trigger{border:0;background:transparent;color:#4a4a4a;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:22px;min-width:22px;height:28px;padding:0}.services-trigger span{display:inline-block;transition:transform .25s ease}
+.services-dropdown{position:absolute;top:100%;left:50%;width:235px;padding:10px;background:#fff;border:1px solid #dadad7;box-shadow:0 18px 35px rgba(0,0,0,.12);opacity:0;visibility:hidden;pointer-events:none;transform:translate(-50%,8px);transition:.25s;z-index:500}.services-menu:hover .services-dropdown,.services-menu:focus-within .services-dropdown,.services-menu.is-open .services-dropdown{opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0)}.services-menu:hover .services-trigger span,.services-menu:focus-within .services-trigger span,.services-menu.is-open .services-trigger span{transform:rotate(180deg)}.services-dropdown a{display:block;padding:11px 12px;color:#555;font:13px/1.25 "DM Sans",sans-serif}.services-dropdown a:hover,.services-dropdown a.active{background:#f2f3f1;color:#111}
+.nav-right{display:flex;align-items:center;gap:20px}.phone{font-size:13px}.nav-cta{background:#111;color:#fff;min-height:45px;display:inline-flex;align-items:center;justify-content:center;padding:0 23px;border-radius:100px;font-size:12px}.menu-button{display:none;border:0;background:#fff;cursor:pointer}.drawer-backdrop{position:fixed;inset:0;z-index:280;background:rgba(16,16,16,.42);opacity:0;visibility:hidden;pointer-events:none;transition:.35s}.drawer-backdrop.is-open{opacity:1;visibility:visible;pointer-events:auto}body.menu-open{overflow:hidden}
+.detail-hero{min-height:calc(100vh - 84px);display:grid;grid-template-columns:43% 57%;background:#fff}.hero-copy{padding:clamp(70px,10vw,150px) 7vw;display:flex;flex-direction:column;justify-content:center}.kicker{font-size:11px;letter-spacing:2.4px;text-transform:uppercase;color:var(--muted);margin-bottom:28px}h1{font:500 clamp(54px,7vw,112px)/.94 "Manrope",sans-serif;letter-spacing:-5px;max-width:650px}.hero-copy p{color:var(--muted);font-size:17px;line-height:1.8;max-width:450px;margin-top:38px}.hero-image{min-height:650px;overflow:hidden}.hero-image img{height:100%;width:100%;object-fit:cover;filter:grayscale(100%);transition:filter .6s ease}.hero-image:hover img{filter:grayscale(0)}.page-transition-image{position:fixed;z-index:10;object-fit:cover;pointer-events:none;filter:grayscale(100%);transition:all .8s cubic-bezier(.2,.8,.2,1)}
+.detail-content{max-width:1280px;margin:auto;padding:130px 5vw 150px}.content-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:11vw;border-top:1px solid var(--line);padding-top:28px}.content-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}.content-copy{max-width:650px}.content-copy h2{font:500 clamp(32px,4vw,58px)/1.04 "Manrope",sans-serif;letter-spacing:-2px;margin-bottom:30px}.content-copy p{font-size:17px;line-height:1.85;color:#555;margin-bottom:25px}.detail-band{margin-top:130px;display:grid;grid-template-columns:1fr 1fr;gap:24px}.detail-band img{width:100%;height:540px;object-fit:cover;filter:grayscale(100%)}.detail-band img:last-child{margin-top:100px}.detail-footer{padding:55px 5vw;background:var(--ink);color:#fff;display:flex;justify-content:space-between;align-items:center;font-size:12px;letter-spacing:1.3px;text-transform:uppercase}
+@media(max-width:1050px){.phone{display:none}.navigation{position:fixed;top:0;right:0;width:min(390px,88vw);height:100dvh;padding:110px 32px 36px;display:flex;align-items:flex-start;flex-direction:column;gap:0;background:#f4f4f1;box-shadow:-18px 0 60px rgba(0,0,0,.18);transform:translateX(105%);opacity:0;visibility:hidden;pointer-events:none;transition:transform .5s cubic-bezier(.77,0,.18,1),opacity .25s ease,visibility .25s ease;z-index:320;overflow-y:auto}.navigation.is-open{transform:translateX(0);opacity:1;visibility:visible;pointer-events:auto}.navigation>a{width:100%;padding:17px 0;border-bottom:1px solid #d9d9d4;color:#111;font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif;letter-spacing:-1.4px}.navigation>a:after{display:none}.navigation .services-menu{display:block;width:100%}.navigation .services-main-row{width:100%;display:grid;grid-template-columns:1fr 46px;align-items:center;border-bottom:1px solid #d9d9d4}.navigation .services-link{width:100%;padding:17px 0;color:#111;font:500 clamp(25px,5vw,36px)/1.1 "Manrope",sans-serif;letter-spacing:-1.4px}.navigation .services-link:after{display:none}.navigation .services-trigger{width:46px;min-width:46px;height:58px;border-left:1px solid rgba(217,217,212,.75);background:transparent;font-size:19px}.navigation .services-dropdown,.navigation .services-menu:hover .services-dropdown,.navigation .services-menu:focus-within .services-dropdown{position:static;width:100%;display:none;padding:8px 0 12px;background:transparent;border:0;box-shadow:none;opacity:1;visibility:visible;pointer-events:auto;transform:none}.navigation .services-menu.is-open .services-dropdown{display:block}.navigation .services-dropdown a{width:100%;padding:11px 14px;border-bottom:1px solid rgba(217,217,212,.72);color:#5f5f5f;font:400 14px/1.35 "DM Sans",sans-serif}.navigation .services-dropdown a:last-child{border-bottom:0}.navigation .services-menu:hover .services-trigger span,.navigation .services-menu:focus-within .services-trigger span{transform:none}.navigation .services-menu.is-open .services-trigger span{transform:rotate(180deg)}.menu-button{position:relative;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(0,0,0,.18);border-radius:50%;z-index:350;font-size:0}.menu-button:before,.menu-button:after{content:"";position:absolute;left:50%;top:50%;width:15px;height:1px;background:#111;transform:translate(-50%,-50%);transition:.3s}.menu-button:after{transform:translate(-50%,-50%) rotate(90deg)}.menu-button.is-open{background:#111;transform:rotate(45deg)}.menu-button.is-open:before,.menu-button.is-open:after{background:#fff}}
+@media(max-width:760px){.header{height:68px}.nav{width:100%;padding:0 20px}.logo-image{width:66px}.nav-cta{display:none}.menu-button{width:38px;height:38px}.navigation{padding:92px 28px 34px}.navigation>a,.navigation .services-link{font-size:25px}.detail-hero{display:block;min-height:0}.hero-copy{padding:80px 24px 65px}h1{font-size:58px;letter-spacing:-3px}.hero-copy p{font-size:15px;margin-top:28px}.hero-image{height:72vh;min-height:430px}.detail-content{padding:85px 24px 100px}.content-grid{display:block}.content-copy{margin-top:35px}.content-copy h2{font-size:40px}.content-copy p{font-size:15px}.detail-band{display:block;margin-top:80px}.detail-band img{height:430px;margin:0 0 18px!important}.detail-footer{padding:35px 24px;display:block;line-height:2}}
 </style>
 </head>
 <body>
-<nav class="detail-nav">
-<a class="brand" href="index.html#services">Seal A Gap</a>
-<a class="detail-about" href="about.html">About Us</a>
-<a class="back" href="index.html#services"><span>←</span> Back to services</a>
-</nav>
-<main>
-<section class="detail-hero">
-<div class="hero-copy">
-<div class="kicker" id="service-number">Service 01</div>
-<h1 id="service-title">Maintenance</h1>
-<p id="service-intro"></p>
-</div>
-<div class="hero-image"><img id="service-image" alt=""></div>
-</section>
-<section class="detail-content">
-<div class="content-grid">
-<div class="content-label">What we deliver</div>
-<div class="content-copy">
-<h2 id="service-heading"></h2>
-<p id="service-description"></p>
-<p>We plan every stage carefully, communicate clearly, and leave each site clean and ready for use. Our experienced team works across Melbourne with a practical eye for detail and long-term performance.</p>
-</div>
-</div>
-<div class="detail-band">
-<img id="service-image-secondary" alt="">
-<img id="service-image-tertiary" alt="">
-</div>
-</section>
-</main>
+<header class="header"><div class="nav"><a href="index.html" class="logo"><img class="logo-image" src="seal-a-gap-dWHosRqp.svg" alt="Seal A Gap"></a><nav class="navigation" id="site-navigation"><a href="index.html">Home</a><a href="about.html">About Us</a><div class="services-menu"><div class="services-main-row"><a href="services.html" class="services-link">Services</a><button class="services-trigger" type="button" aria-label="Open services menu" aria-expanded="false" aria-controls="services-submenu"><span>⌄</span></button></div><div class="services-dropdown" id="services-submenu"><a href="maintenance.html" data-service-id="01">Maintenance</a><a href="caulking-waterproofing.html" data-service-id="02">Caulking &amp; Waterproofing</a><a href="abseiling-services.html" data-service-id="03">Abseiling Services</a><a href="commercial-works.html" data-service-id="04">Commercial Works</a><a href="bathroom-sealing.html" data-service-id="05">Bathroom Sealing</a></div></div><a href="projects.html">Projects</a><a href="contact.html">Contact</a></nav><div class="nav-right"><a class="phone" href="tel:0419800494">0419 800 494</a><a href="contact.html" class="nav-cta">Request a Quote</a><button class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-navigation">☰</button></div></div></header>
+<div class="drawer-backdrop"></div>
+<main><section class="detail-hero"><div class="hero-copy"><div class="kicker" id="service-number">Service 01</div><h1 id="service-title">Maintenance</h1><p id="service-intro"></p></div><div class="hero-image"><img id="service-image" alt=""></div></section><section class="detail-content"><div class="content-grid"><div class="content-label">What we deliver</div><div class="content-copy"><h2 id="service-heading"></h2><p id="service-description"></p><p>We plan every stage carefully, communicate clearly, and leave each site clean and ready for use. Our experienced team works across Melbourne with a practical eye for detail and long-term performance.</p></div></div><div class="detail-band"><img id="service-image-secondary" alt=""><img id="service-image-tertiary" alt=""></div></section></main>
 <footer class="detail-footer"><span>Seal A Gap</span><span>Melbourne, VIC · 0419 800 494</span></footer>
 <script>
 const services={
@@ -80,53 +33,10 @@ const services={
 "02":{title:"Caulking & Waterproofing",intro:"Professional waterproofing and sealing systems designed for long-term performance.",description:"Careful preparation and durable sealing systems help prevent moisture damage across wet areas, facades, joints, and vulnerable building details.",image:"https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1100&q=90"},
 "03":{title:"Abseiling Services",intro:"Specialist rope-access solutions for difficult and high-access building areas.",description:"Our rope-access team reaches challenging locations safely and efficiently, reducing disruption while delivering precise inspection, repair, and maintenance work.",image:"https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1100&q=90"},
 "04":{title:"Commercial Works",intro:"Reliable construction and maintenance solutions for commercial properties and facilities.",description:"We help commercial spaces stay safe, presentable, and operational with dependable construction, repair, and maintenance support.",image:"https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1100&q=90"},
-"05":{title:"Bathroom Sealing",intro:"Detailed sealing and waterproofing for wet areas, bathrooms, and renovation projects.",description:"Precise preparation and clean finishing keep bathrooms protected from water ingress while complementing the space around them.",image:"https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1100&q=90"}
-};
-const id=new URLSearchParams(location.search).get("service")||"01";
-const service=services[id]||services["01"];
-document.title=`${service.title} | Seal A Gap`;
-document.querySelector("#service-number").textContent=`Service ${id}`;
-document.querySelector("#service-title").textContent=service.title;
-document.querySelector("#service-intro").textContent=service.intro;
-document.querySelector("#service-heading").textContent=service.title;
-document.querySelector("#service-description").textContent=service.description;
-["service-image","service-image-secondary","service-image-tertiary"].forEach((key,index)=>{const image=document.querySelector(`#${key}`);image.src=service[["image","secondary","tertiary"][index]];image.alt=service.title;});
-
-const transitionData=sessionStorage.getItem("serviceTransition");
-const heroImage=document.querySelector("#service-image");
-
-if(transitionData){
-try{
-const source=JSON.parse(transitionData);
-const transitionImage=document.createElement("img");
-const target=heroImage.parentElement.getBoundingClientRect();
-
-transitionImage.className="page-transition-image";
-transitionImage.src=source.src;
-transitionImage.style.left=`${source.left}px`;
-transitionImage.style.top=`${source.top}px`;
-transitionImage.style.width=`${source.width}px`;
-transitionImage.style.height=`${source.height}px`;
-document.body.appendChild(transitionImage);
-heroImage.style.opacity="0";
-
-requestAnimationFrame(()=>{
-transitionImage.style.left=`${target.left}px`;
-transitionImage.style.top=`${target.top}px`;
-transitionImage.style.width=`${target.width}px`;
-transitionImage.style.height=`${target.height}px`;
-});
-
-setTimeout(()=>{
-heroImage.style.opacity="1";
-transitionImage.remove();
-},850);
-
-sessionStorage.removeItem("serviceTransition");
-}catch(error){
-sessionStorage.removeItem("serviceTransition");
-}
-}
+"05":{title:"Bathroom Sealing",intro:"Detailed sealing and waterproofing for wet areas and bathrooms.",description:"Precise preparation and clean finishing keep bathrooms protected from water ingress while complementing the space around them.",image:"https://images.unsplash.com/photo-1600566753051-f0b89df2dd90?auto=format&fit=crop&w=1600&q=90",secondary:"https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1100&q=90",tertiary:"https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1100&q=90"}};
+const id=new URLSearchParams(location.search).get("service")||"01",service=services[id]||services["01"];document.title=`${service.title} | Seal A Gap`;document.querySelector("#service-number").textContent=`Service ${id}`;document.querySelector("#service-title").textContent=service.title;document.querySelector("#service-intro").textContent=service.intro;document.querySelector("#service-heading").textContent=service.title;document.querySelector("#service-description").textContent=service.description;["service-image","service-image-secondary","service-image-tertiary"].forEach((key,index)=>{const image=document.querySelector(`#${key}`);image.src=service[["image","secondary","tertiary"][index]];image.alt=service.title});document.querySelectorAll("[data-service-id]").forEach(link=>{if(link.dataset.serviceId===id){link.classList.add("active");link.setAttribute("aria-current","page")}});
+const transitionData=sessionStorage.getItem("serviceTransition"),heroImage=document.querySelector("#service-image");if(transitionData){try{const source=JSON.parse(transitionData),transitionImage=document.createElement("img"),target=heroImage.parentElement.getBoundingClientRect();transitionImage.className="page-transition-image";transitionImage.src=source.src;transitionImage.style.left=`${source.left}px`;transitionImage.style.top=`${source.top}px`;transitionImage.style.width=`${source.width}px`;transitionImage.style.height=`${source.height}px`;document.body.appendChild(transitionImage);heroImage.style.opacity="0";requestAnimationFrame(()=>{transitionImage.style.left=`${target.left}px`;transitionImage.style.top=`${target.top}px`;transitionImage.style.width=`${target.width}px`;transitionImage.style.height=`${target.height}px`});setTimeout(()=>{heroImage.style.opacity="1";transitionImage.remove()},850);sessionStorage.removeItem("serviceTransition")}catch(error){sessionStorage.removeItem("serviceTransition")}}
+const menuButton=document.querySelector(".menu-button"),navigation=document.querySelector(".navigation"),backdrop=document.querySelector(".drawer-backdrop"),servicesMenu=document.querySelector(".services-menu"),servicesTrigger=document.querySelector(".services-trigger");function closeServicesMenu(){servicesMenu?.classList.remove("is-open");if(servicesTrigger){servicesTrigger.setAttribute("aria-expanded","false");servicesTrigger.setAttribute("aria-label","Open services menu")}}function closeMenu(){navigation?.classList.remove("is-open");backdrop?.classList.remove("is-open");menuButton?.classList.remove("is-open");document.body.classList.remove("menu-open");if(menuButton){menuButton.setAttribute("aria-expanded","false");menuButton.setAttribute("aria-label","Open navigation")}closeServicesMenu()}menuButton?.addEventListener("click",()=>{const isOpen=!navigation.classList.contains("is-open");navigation.classList.toggle("is-open",isOpen);backdrop.classList.toggle("is-open",isOpen);menuButton.classList.toggle("is-open",isOpen);document.body.classList.toggle("menu-open",isOpen);menuButton.setAttribute("aria-expanded",String(isOpen));menuButton.setAttribute("aria-label",isOpen?"Close navigation":"Open navigation");if(!isOpen)closeServicesMenu()});backdrop?.addEventListener("click",closeMenu);navigation?.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeMenu));servicesTrigger?.addEventListener("click",event=>{if(window.innerWidth<=1050){event.preventDefault();event.stopPropagation();const willOpen=!servicesMenu.classList.contains("is-open");servicesMenu.classList.toggle("is-open",willOpen);servicesTrigger.setAttribute("aria-expanded",String(willOpen));servicesTrigger.setAttribute("aria-label",willOpen?"Close services menu":"Open services menu");servicesTrigger.blur()}});document.addEventListener("click",event=>{if(window.innerWidth<=1050&&servicesMenu?.classList.contains("is-open")&&!servicesMenu.contains(event.target))closeServicesMenu()});document.addEventListener("keydown",event=>{if(event.key==="Escape")closeMenu()});window.addEventListener("resize",()=>{if(window.innerWidth>1050)closeMenu()});
 </script>
 </body>
 </html>
